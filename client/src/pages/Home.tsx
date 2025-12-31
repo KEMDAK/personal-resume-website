@@ -422,8 +422,8 @@ export default function Home() {
                       {dateDisplay}
                     </div>
 
-                    {/* Dot on timeline - perfectly centered on the line */}
-                    <div className="absolute -left-4 md:-left-4.5 -top-4 md:-top-5 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black" style={{ boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00' }} />
+                    {/* Dot on timeline - overlapping with the line */}
+                    <div className="absolute -left-2.5 md:-left-3 -top-4 md:-top-5 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black" style={{ boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00' }} />
 
                     {/* Content */}
                     <div>
@@ -581,8 +581,8 @@ export default function Home() {
                     {edu.startDate} — {edu.endDate}
                   </div>
 
-                  {/* Dot on timeline - perfectly centered on the line */}
-                  <div className="absolute -left-4 md:-left-4.5 -top-4 md:-top-5 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black" style={{ boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00' }} />
+                  {/* Dot on timeline - overlapping with the line */}
+                  <div className="absolute -left-2.5 md:-left-3 -top-4 md:-top-5 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black" style={{ boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00' }} />
 
                   {/* Content */}
                   <div>
