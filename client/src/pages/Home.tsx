@@ -289,7 +289,7 @@ export default function Home() {
 
           <div className="experience-timeline">
             {experiences.map((exp, idx) => (
-              <div key={idx} className="timeline-item scroll-reveal" style={{ animationDelay: `${idx * 0.2}s` }}>
+              <div key={idx} className="timeline-item" style={{ animationDelay: `${idx * 0.2}s` }}>
                 <div className="border-l-2 border-accent pl-8 pb-8">
                   <h3 className="text-2xl font-bold font-mono text-accent mb-2">{exp.title}</h3>
                   <p className="text-lg font-mono text-foreground/80 mb-1">{exp.company}</p>
@@ -320,7 +320,7 @@ export default function Home() {
             {projects.map((project, idx) => (
               <div
                 key={idx}
-                className="project-card scroll-reveal"
+                className="project-card"
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
                 <div className="flex justify-between items-start mb-4">
@@ -355,7 +355,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 gap-12">
             {skills.map((skillGroup, idx) => (
-              <div key={idx} className="scroll-reveal" style={{ animationDelay: `${idx * 0.15}s` }}>
+              <div key={idx} style={{ animationDelay: `${idx * 0.15}s` }}>
                 <h3 className="text-xl font-bold font-mono text-accent mb-4">{skillGroup.category}</h3>
                 <div className="mb-6">
                   <div className="skill-bar" style={{ '--skill-percentage': `${skillGroup.percentage}%` } as any}>
@@ -390,7 +390,7 @@ export default function Home() {
             {certifications.map((cert, idx) => (
               <div
                 key={idx}
-                className="border-l-4 border-accent pl-6 py-4 hover-scale scroll-reveal"
+                className="border-l-4 border-accent pl-6 py-4 hover-scale"
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
                 <h3 className="text-lg font-bold font-mono text-accent mb-1">{cert.name}</h3>
