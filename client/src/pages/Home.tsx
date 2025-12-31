@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Mail, Github, Linkedin, ChevronDown, ArrowRight } from 'lucide-react';
+import { Mail, Github, Linkedin, ChevronDown } from 'lucide-react';
 
 /**
  * DESIGN PHILOSOPHY: Green Terminal Vibe with Advanced Animations
@@ -9,7 +9,8 @@ import { Mail, Github, Linkedin, ChevronDown, ArrowRight } from 'lucide-react';
  * - Mobile-first responsive design
  * - Separate professional, volunteer, and teaching experience
  * - Complete LinkedIn data integration
- * - Enhanced timeline with vertical bar, aligned dots, and dates
+ * - Enhanced timeline with vertical bar, aligned dots, and glowing dates
+ * - Dynamic duration calculation for current positions
  */
 
 interface TimelineItem {
@@ -21,6 +22,7 @@ interface TimelineItem {
   location?: string;
   description: string[];
   type?: 'professional' | 'volunteer' | 'teaching';
+  isCurrent?: boolean;
 }
 
 interface AnimatedLineProps {
@@ -28,6 +30,37 @@ interface AnimatedLineProps {
   index: number;
   isVisible: boolean;
 }
+
+const calculateDuration = (startDate: string, endDate: string): string => {
+  const parseDate = (dateStr: string): Date => {
+    const [month, year] = dateStr.trim().split(' ');
+    const monthMap: { [key: string]: number } = {
+      'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+      'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+    };
+    return new Date(parseInt(year), monthMap[month] || 0, 1);
+  };
+
+  try {
+    const start = parseDate(startDate);
+    const end = endDate.toLowerCase() === 'present' ? new Date() : parseDate(endDate);
+    
+    let years = end.getFullYear() - start.getFullYear();
+    let months = end.getMonth() - start.getMonth();
+    
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+    
+    if (years === 0 && months === 0) return 'Less than 1 month';
+    if (years === 0) return `${months} mo${months > 1 ? 's' : ''}`;
+    if (months === 0) return `${years} yr${years > 1 ? 's' : ''}`;
+    return `${years} yr${years > 1 ? 's' : ''} ${months} mo${months > 1 ? 's' : ''}`;
+  } catch {
+    return '';
+  }
+};
 
 const AnimatedLine: React.FC<AnimatedLineProps> = ({ text, index, isVisible }) => {
   const delay = index * 0.05;
@@ -92,28 +125,27 @@ export default function Home() {
         'Mentoring junior engineers and driving code quality improvements',
         'Contributing to high-impact projects across Meta platforms'
       ],
-      type: 'professional'
+      type: 'professional' as const,
+      isCurrent: true
     },
     {
       title: 'Software Engineer',
       company: 'Meta',
       startDate: 'Jan 2023',
       endDate: 'Jun 2024',
-      duration: '1 yr 6 mos',
       location: 'Greater London, England, United Kingdom',
       description: [
         'Developing scalable systems and features for Meta platforms',
         'Collaborating with cross-functional teams on high-impact projects',
         'Contributing to codebase optimization and performance improvements'
       ],
-      type: 'professional'
+      type: 'professional' as const
     },
     {
       title: 'Junior Software Engineer',
       company: 'Meta',
       startDate: 'Jun 2022',
       endDate: 'Jan 2023',
-      duration: '8 mos',
       location: 'Greater London, England, United Kingdom',
       description: [
         'Building and maintaining backend services',
@@ -127,119 +159,111 @@ export default function Home() {
       company: 'Bleenco',
       startDate: 'Dec 2018',
       endDate: 'Feb 2021',
-      duration: '2 yrs 3 mos',
       location: 'Munich, Bavaria, Germany',
       description: [
         'Led a team of developers designing scalable software solutions',
         'Architected systems for occupational safety and compliance',
         'Tools: Golang, C++, TypeScript, TimeScaleDB, RabbitMQ, GRPC, AngularJS, Kubernetes'
       ],
-      type: 'professional'
+      type: 'professional' as const
     },
     {
       title: 'Back-end Developer',
       company: 'elmenus',
       startDate: 'Jul 2018',
       endDate: 'Sep 2018',
-      duration: '3 mos',
       description: [
         'Developed backend services for restaurant discovery and ordering platform',
         'Analyzed user data to improve platform experience',
         'Tools: NodeJS, Scala, Apache Spark, MariaDB, Apache Cassandra, Elastic Search'
       ],
-      type: 'professional'
+      type: 'professional' as const
     },
     {
       title: 'Software Engineer Intern',
       company: 'Meta',
       startDate: 'Jun 2021',
       endDate: 'Aug 2021',
-      duration: '3 mos',
       description: [
         'Part of the Integrity Experience team',
         'Responsible for empowering users to make informed decisions on Meta platforms',
         'Tools: Hacklang (PHP), Python'
       ],
-      type: 'professional'
+      type: 'professional' as const
     },
     {
       title: 'Software Engineer Intern',
       company: 'HubSpot',
       startDate: 'Mar 2021',
       endDate: 'May 2021',
-      duration: '3 mos',
       description: [
         'Part of the Billing Management Experience team',
         'Responsible for comprehensibility of Billing-related PDF documents',
         'Tools: Java, React, HTML, CSS, Kafka'
       ],
-      type: 'professional'
+      type: 'professional' as const
     },
     {
       title: 'Master Thesis Project',
       company: 'ABB',
       startDate: 'Sep 2021',
       endDate: 'Feb 2022',
-      duration: '6 mos',
       location: 'Baden-Württemberg, Germany',
       description: [
         'Conducted research and development for industrial automation',
         'Skills: C, C++'
       ],
-      type: 'professional'
+      type: 'professional' as const
     },
     {
       title: 'Software Engineer (Free Lancing)',
       company: 'Deutsches Forschungszentrum für Künstliche Intelligenz (DFKI)',
-      startDate: '2018',
-      endDate: '2018',
+      startDate: 'Jan 2018',
+      endDate: 'Dec 2018',
       description: [
         'Developed proof of concept for Tensor Factorization Music Recommender system',
         'Implemented recommendation algorithm, backend server, and Android application',
         'Tools: Java, ExpressJS, MySQL'
       ],
-      type: 'professional'
+      type: 'professional' as const
     },
     {
       title: 'Junior Researcher',
       company: 'Deutsches Forschungszentrum für Künstliche Intelligenz (DFKI)',
-      startDate: '2017',
-      endDate: '2018',
+      startDate: 'Jan 2017',
+      endDate: 'Dec 2018',
       description: [
         'Designed and implemented OCR correction system for historical documents',
         'System based on Recurrent Neural Networks, reducing error by 3% over state-of-the-art',
         'Part of Excellence scholarship funded by DFKI and DAAD'
       ],
-      type: 'professional'
+      type: 'professional' as const
     },
     {
       title: 'Software Developer (Intern)',
       company: 'eSEED',
       startDate: 'Jun 2016',
       endDate: 'Jul 2016',
-      duration: '2 mos',
       description: [
         'Developed Android applications and web applications',
         'Tools: WordPress, Java, ExpressJS, Qt, MySQL, MongoDB'
       ],
-      type: 'professional'
+      type: 'professional' as const
     }
-  ];
+  ].sort((a, b) => {
+    const parseDate = (dateStr: string): Date => {
+      if (dateStr.toLowerCase() === 'present') return new Date();
+      const [month, year] = dateStr.trim().split(' ');
+      const monthMap: { [key: string]: number } = {
+        'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+        'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+      };
+      return new Date(parseInt(year), monthMap[month] || 0, 1);
+    };
+    return parseDate(b.startDate).getTime() - parseDate(a.startDate).getTime();
+  });
 
   const volunteerExperience: TimelineItem[] = [
-    {
-      title: 'Lead Software Developer',
-      company: 'IEEE German University in Cairo Student Branch',
-      startDate: 'Mar 2016',
-      endDate: 'Apr 2017',
-      duration: '1 yr 2 mos',
-      description: [
-        'Led a team of 14 voluntarily recruited software developers',
-        'Divided team into three sub-teams: Web back-end, Web front-end, and Android development',
-        'Provided hands-on experience in software development through collaborative projects'
-      ],
-      type: 'volunteer'
-    },
     {
       title: 'Competitive Programming Contestant',
       company: 'ACM Programming Contests',
@@ -250,22 +274,46 @@ export default function Home() {
         'Ranked 35th (out of 150+ teams) in ACM Arab Collegiate Programming Contest 2016',
         'Solved 1000+ algorithmic challenges on various online judges'
       ],
-      type: 'volunteer'
+      type: 'volunteer' as const,
+      isCurrent: true
+    },
+    {
+      title: 'Lead Software Developer',
+      company: 'IEEE German University in Cairo Student Branch',
+      startDate: 'Mar 2016',
+      endDate: 'Apr 2017',
+      description: [
+        'Led a team of 14 voluntarily recruited software developers',
+        'Divided team into three sub-teams: Web back-end, Web front-end, and Android development',
+        'Provided hands-on experience in software development through collaborative projects'
+      ],
+      type: 'volunteer' as const
     }
-  ];
+  ].sort((a, b) => {
+    const parseDate = (dateStr: string): Date => {
+      if (dateStr.toLowerCase() === 'present') return new Date();
+      const [month, year] = dateStr.trim().split(' ');
+      const monthMap: { [key: string]: number } = {
+        'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+        'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+      };
+      return new Date(parseInt(year), monthMap[month] || 0, 1);
+    };
+    return parseDate(b.startDate).getTime() - parseDate(a.startDate).getTime();
+  });
 
   const teachingExperience: TimelineItem[] = [
     {
       title: 'Junior Teaching Assistant',
       company: 'The German University in Cairo',
-      startDate: '2015',
-      endDate: '2016',
+      startDate: 'Sep 2015',
+      endDate: 'Jun 2016',
       description: [
         'Introduction to Computer Science (CSEN 102): Teaching first semester students basic CS concepts and programming fundamentals using Python',
         'Data Structures and Algorithms (CSEN 301): Teaching third semester students data structures (arrays, stacks, queues, trees, heaps, hash tables) using Java',
         'Introduction to Computer Programming (CSEN 202): Teaching second semester students programming basics using Java'
       ],
-      type: 'teaching'
+      type: 'teaching' as const
     }
   ];
 
@@ -274,17 +322,27 @@ export default function Home() {
       school: 'Technical University Munich',
       degree: 'Master of Science',
       field: 'Computer Science',
-      startDate: '2018',
-      endDate: '2022'
+      startDate: 'Sep 2018',
+      endDate: 'Feb 2022'
     },
     {
       school: 'German University in Cairo',
       degree: 'Bachelor of Science',
       field: 'Computer Science & Engineering',
-      startDate: '2013',
-      endDate: '2018'
+      startDate: 'Sep 2013',
+      endDate: 'Jun 2018'
     }
-  ];
+  ].sort((a, b) => {
+    const parseDate = (dateStr: string): Date => {
+      const [month, year] = dateStr.trim().split(' ');
+      const monthMap: { [key: string]: number } = {
+        'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+        'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+      };
+      return new Date(parseInt(year), monthMap[month] || 0, 1);
+    };
+    return parseDate(b.startDate).getTime() - parseDate(a.startDate).getTime();
+  });
 
   const skills = [
     {
@@ -348,43 +406,50 @@ export default function Home() {
             <div className="absolute left-1.5 md:left-2 top-0 bottom-0 w-0.5 md:w-1 bg-gradient-to-b from-green-400 to-green-400/30" />
             
             <div className="space-y-12 md:space-y-16 pl-8 md:pl-12">
-              {items.map((item, idx) => (
-                <div
-                  key={idx}
-                  id={`${id}-${idx}`}
-                  className="relative transition-all duration-1000"
-                >
-                  {/* Dot on timeline */}
-                  <div className="absolute -left-7 md:-left-10 top-1 md:top-2 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow border-2 border-black" />
-                  
-                  {/* Date badge aligned with dot */}
-                  <div className="absolute -left-24 md:-left-32 top-0 md:top-1 text-xs md:text-sm text-green-400/70 whitespace-nowrap font-mono">
-                    {item.startDate} — {item.endDate}
-                  </div>
+              {items.map((item, idx) => {
+                const duration = item.isCurrent ? calculateDuration(item.startDate, 'Present') : (item.duration || calculateDuration(item.startDate, item.endDate));
+                const dateDisplay = item.isCurrent 
+                  ? `${item.startDate} — Present`
+                  : `${item.startDate} — ${item.endDate}`;
 
-                  {/* Content */}
-                  <div className="pt-0 md:pt-1">
-                    <h3 className="text-lg md:text-2xl font-bold text-green-300 mb-1 md:mb-2 break-words">{item.title}</h3>
-                    <p className="text-base md:text-lg text-green-400 mb-1 md:mb-2 break-words">{item.company}</p>
-                    {item.duration && (
-                      <p className="text-xs md:text-sm text-green-400/60 mb-2 md:mb-3">{item.duration}</p>
-                    )}
-                    {item.location && (
-                      <p className="text-xs md:text-sm text-green-400/60 mb-3 md:mb-4">{item.location}</p>
-                    )}
-                    <div className="space-y-2 md:space-y-3">
-                      {item.description.map((desc, i) => (
-                        <AnimatedLine
-                          key={i}
-                          text={desc}
-                          index={i}
-                          isVisible={isSectionVisible(id)}
-                        />
-                      ))}
+                return (
+                  <div
+                    key={idx}
+                    id={`${id}-${idx}`}
+                    className="relative transition-all duration-1000"
+                  >
+                    {/* Dot on timeline */}
+                    <div className="absolute -left-7 md:-left-10 top-1 md:top-2 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow border-2 border-black" />
+                    
+                    {/* Date badge - positioned below dot to avoid overlaps */}
+                    <div className="absolute left-0 md:left-0 top-10 md:top-12 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono glow">
+                      {dateDisplay}
+                    </div>
+
+                    {/* Content - with top margin to accommodate dates */}
+                    <div className="pt-16 md:pt-20">
+                      <h3 className="text-lg md:text-2xl font-bold text-green-300 mb-1 md:mb-2 break-words">{item.title}</h3>
+                      <p className="text-base md:text-lg text-green-400 mb-1 md:mb-2 break-words">{item.company}</p>
+                      {duration && (
+                        <p className="text-xs md:text-sm text-green-400/60 mb-2 md:mb-3">{duration}</p>
+                      )}
+                      {item.location && (
+                        <p className="text-xs md:text-sm text-green-400/60 mb-3 md:mb-4">{item.location}</p>
+                      )}
+                      <div className="space-y-2 md:space-y-3">
+                        {item.description.map((desc, i) => (
+                          <AnimatedLine
+                            key={i}
+                            text={desc}
+                            index={i}
+                            isVisible={isSectionVisible(id)}
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -510,13 +575,13 @@ export default function Home() {
                   {/* Dot on timeline */}
                   <div className="absolute -left-7 md:-left-10 top-1 md:top-2 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow border-2 border-black" />
                   
-                  {/* Date badge aligned with dot */}
-                  <div className="absolute -left-24 md:-left-32 top-0 md:top-1 text-xs md:text-sm text-green-400/70 whitespace-nowrap font-mono">
+                  {/* Date badge - positioned below dot */}
+                  <div className="absolute left-0 md:left-0 top-10 md:top-12 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono glow">
                     {edu.startDate} — {edu.endDate}
                   </div>
 
-                  {/* Content */}
-                  <div className="pt-0 md:pt-1">
+                  {/* Content - with top margin to accommodate dates */}
+                  <div className="pt-16 md:pt-20">
                     <h3 className="text-lg md:text-2xl font-bold text-green-300 mb-1 md:mb-2 break-words">{edu.degree}</h3>
                     <p className="text-base md:text-lg text-green-400 mb-1 md:mb-2 break-words">{edu.school}</p>
                     <p className="text-xs md:text-sm text-green-400/80 mb-2 md:mb-3">{edu.field}</p>
