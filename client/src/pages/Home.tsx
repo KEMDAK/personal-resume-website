@@ -410,20 +410,20 @@ export default function Home() {
                   <div
                     key={idx}
                     id={`${id}-${idx}`}
-                    className="relative transition-all duration-1000"
+                    className="relative transition-all duration-1000 pt-8 md:pt-10"
                     style={{
                       opacity: isSectionVisible(id) ? 1 : 0,
                       transform: isSectionVisible(id) ? 'translateY(0px)' : 'translateY(20px)',
                       transitionDelay: `${idx * 0.1}s`
                     }}
                   >
-                    {/* Dot on timeline - centered on the line */}
-                    <div className="absolute -left-6 md:-left-9 top-0 md:top-1 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow border-2 border-black" />
-                    
-                    {/* Date badge - aligned horizontally with dot */}
-                    <div className="absolute -left-40 md:-left-56 top-0 md:top-1 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono glow w-36 md:w-52 text-right pr-2">
+                    {/* Date badge - positioned above the item */}
+                    <div className="absolute -top-8 md:-top-10 left-0 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono glow">
                       {dateDisplay}
                     </div>
+
+                    {/* Dot on timeline - centered on the line */}
+                    <div className="absolute -left-6 md:-left-9 -top-7 md:-top-8 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow border-2 border-black" />
 
                     {/* Content */}
                     <div>
@@ -569,20 +569,20 @@ export default function Home() {
                 <div
                   key={idx}
                   id={`edu-${idx}`}
-                  className="relative transition-all duration-1000"
+                  className="relative transition-all duration-1000 pt-8 md:pt-10"
                   style={{
                     opacity: isSectionVisible('education') ? 1 : 0,
                     transform: isSectionVisible('education') ? 'translateY(0px)' : 'translateY(20px)',
                     transitionDelay: `${idx * 0.1}s`
                   }}
                 >
-                  {/* Dot on timeline - centered on the line */}
-                  <div className="absolute -left-6 md:-left-9 top-0 md:top-1 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow border-2 border-black" />
-                  
-                  {/* Date badge - aligned horizontally with dot */}
-                  <div className="absolute -left-40 md:-left-56 top-0 md:top-1 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono glow w-36 md:w-52 text-right pr-2">
+                  {/* Date badge - positioned above the item */}
+                  <div className="absolute -top-8 md:-top-10 left-0 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono glow">
                     {edu.startDate} — {edu.endDate}
                   </div>
+
+                  {/* Dot on timeline - centered on the line */}
+                  <div className="absolute -left-6 md:-left-9 -top-7 md:-top-8 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow border-2 border-black" />
 
                   {/* Content */}
                   <div>
