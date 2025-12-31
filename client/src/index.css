@@ -43,41 +43,41 @@
 }
 
 :root {
-  /* Kinetic Brutalism Design Tokens */
+  /* Green Terminal Vibe Design Tokens */
   --primary: #00ff00;
-  --primary-foreground: #1a1a1a;
+  --primary-foreground: #000000;
   --sidebar-primary: #00ff00;
-  --sidebar-primary-foreground: #1a1a1a;
+  --sidebar-primary-foreground: #000000;
   --chart-1: #00ff00;
   --chart-2: #00ff00;
   --chart-3: #00ff00;
   --chart-4: #00ff00;
   --chart-5: #00ff00;
   --radius: 0.25rem;
-  --background: #1a1a1a;
-  --foreground: #ffffff;
-  --card: #262626;
-  --card-foreground: #ffffff;
-  --popover: #1a1a1a;
-  --popover-foreground: #ffffff;
-  --secondary: #333333;
-  --secondary-foreground: #ffffff;
-  --muted: #404040;
-  --muted-foreground: #a0a0a0;
+  --background: #000000;
+  --foreground: #00ff00;
+  --card: #0a0a0a;
+  --card-foreground: #00ff00;
+  --popover: #000000;
+  --popover-foreground: #00ff00;
+  --secondary: #00aa00;
+  --secondary-foreground: #000000;
+  --muted: #003300;
+  --muted-foreground: #00aa00;
   --accent: #00ff00;
-  --accent-foreground: #1a1a1a;
+  --accent-foreground: #000000;
   --destructive: #ff0000;
-  --destructive-foreground: #ffffff;
-  --border: #333333;
-  --input: #262626;
+  --destructive-foreground: #000000;
+  --border: #00ff00;
+  --input: #0a0a0a;
   --ring: #00ff00;
-  --sidebar: #1a1a1a;
-  --sidebar-foreground: #ffffff;
+  --sidebar: #000000;
+  --sidebar-foreground: #00ff00;
   --sidebar-primary: #00ff00;
-  --sidebar-primary-foreground: #1a1a1a;
+  --sidebar-primary-foreground: #000000;
   --sidebar-accent: #00ff00;
-  --sidebar-accent-foreground: #1a1a1a;
-  --sidebar-border: #333333;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #00ff00;
   --sidebar-ring: #00ff00;
 }
 
