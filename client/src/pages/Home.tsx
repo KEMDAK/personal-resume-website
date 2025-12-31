@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, useRef } from 'react';
 import { Mail, Github, Linkedin, ChevronDown } from 'lucide-react';
 
@@ -113,6 +115,17 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const isSectionVisible = (sectionId: string): boolean => {
+    return visibleSections.has(sectionId);
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = sectionRefs.current[sectionId];
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const professionalExperience: TimelineItem[] = [
     {
       title: 'Senior Software Engineer',
@@ -152,7 +165,7 @@ export default function Home() {
         'Participating in code reviews and design discussions',
         'Implementing features for Meta products'
       ],
-      type: 'professional'
+      type: 'professional' as const
     },
     {
       title: 'Lead Software Engineer',
@@ -319,38 +332,28 @@ export default function Home() {
 
   const education = [
     {
-      school: 'Technical University Munich',
       degree: 'Master of Science',
+      school: 'Technical University Munich',
       field: 'Computer Science',
       startDate: 'Sep 2018',
       endDate: 'Feb 2022'
     },
     {
-      school: 'German University in Cairo',
       degree: 'Bachelor of Science',
+      school: 'German University in Cairo',
       field: 'Computer Science & Engineering',
       startDate: 'Sep 2013',
       endDate: 'Jun 2018'
     }
-  ].sort((a, b) => {
-    const parseDate = (dateStr: string): Date => {
-      const [month, year] = dateStr.trim().split(' ');
-      const monthMap: { [key: string]: number } = {
-        'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
-        'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
-      };
-      return new Date(parseInt(year), monthMap[month] || 0, 1);
-    };
-    return parseDate(b.startDate).getTime() - parseDate(a.startDate).getTime();
-  });
+  ];
 
   const skills = [
     {
-      category: 'Backend Development',
+      category: 'Backend & Systems',
       items: ['Node.js', 'ExpressJS', 'Go', 'Java', 'PHP', 'Python', 'Scala', 'Apache Spark']
     },
     {
-      category: 'Frontend Development',
+      category: 'Frontend & Web',
       items: ['React', 'AngularJS', 'Android', 'Ionic', 'HTML', 'CSS', 'Qt', 'WordPress']
     },
     {
@@ -385,16 +388,7 @@ export default function Home() {
     }
   ];
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const isSectionVisible = (id: string) => visibleSections.has(id);
-
-  const TimelineSection = ({ items, title, id }: { items: TimelineItem[], title: string, id: string }) => {
+  const TimelineSection = ({ items, title, id }: { items: TimelineItem[]; title: string; id: string }) => {
     return (
       <section id={id} ref={(el) => { if (el) sectionRefs.current[id] = el; }} className="relative py-16 md:py-32 border-b border-green-400/20">
         <div className="container mx-auto px-4 md:px-6">
@@ -402,7 +396,7 @@ export default function Home() {
             &gt; {title}
           </h2>
           <div className="relative">
-            {/* Vertical timeline line */}
+            {/* Vertical timeline line - centered */}
             <div className="absolute left-1.5 md:left-2 top-0 bottom-0 w-0.5 md:w-1 bg-gradient-to-b from-green-400 to-green-400/30" />
             
             <div className="space-y-12 md:space-y-16 pl-8 md:pl-12">
@@ -417,17 +411,22 @@ export default function Home() {
                     key={idx}
                     id={`${id}-${idx}`}
                     className="relative transition-all duration-1000"
+                    style={{
+                      opacity: isSectionVisible(id) ? 1 : 0,
+                      transform: isSectionVisible(id) ? 'translateY(0px)' : 'translateY(20px)',
+                      transitionDelay: `${idx * 0.1}s`
+                    }}
                   >
-                    {/* Dot on timeline */}
-                    <div className="absolute -left-7 md:-left-10 top-1 md:top-2 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow border-2 border-black" />
+                    {/* Dot on timeline - centered on the line */}
+                    <div className="absolute -left-6 md:-left-9 top-0 md:top-1 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow border-2 border-black" />
                     
-                    {/* Date badge - positioned below dot to avoid overlaps */}
-                    <div className="absolute left-0 md:left-0 top-10 md:top-12 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono glow">
+                    {/* Date badge - aligned horizontally with dot */}
+                    <div className="absolute -left-40 md:-left-56 top-0 md:top-1 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono glow w-36 md:w-52 text-right pr-2">
                       {dateDisplay}
                     </div>
 
-                    {/* Content - with top margin to accommodate dates */}
-                    <div className="pt-16 md:pt-20">
+                    {/* Content */}
+                    <div>
                       <h3 className="text-lg md:text-2xl font-bold text-green-300 mb-1 md:mb-2 break-words">{item.title}</h3>
                       <p className="text-base md:text-lg text-green-400 mb-1 md:mb-2 break-words">{item.company}</p>
                       {duration && (
@@ -571,17 +570,22 @@ export default function Home() {
                   key={idx}
                   id={`edu-${idx}`}
                   className="relative transition-all duration-1000"
+                  style={{
+                    opacity: isSectionVisible('education') ? 1 : 0,
+                    transform: isSectionVisible('education') ? 'translateY(0px)' : 'translateY(20px)',
+                    transitionDelay: `${idx * 0.1}s`
+                  }}
                 >
-                  {/* Dot on timeline */}
-                  <div className="absolute -left-7 md:-left-10 top-1 md:top-2 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow border-2 border-black" />
+                  {/* Dot on timeline - centered on the line */}
+                  <div className="absolute -left-6 md:-left-9 top-0 md:top-1 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow border-2 border-black" />
                   
-                  {/* Date badge - positioned below dot */}
-                  <div className="absolute left-0 md:left-0 top-10 md:top-12 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono glow">
+                  {/* Date badge - aligned horizontally with dot */}
+                  <div className="absolute -left-40 md:-left-56 top-0 md:top-1 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono glow w-36 md:w-52 text-right pr-2">
                     {edu.startDate} — {edu.endDate}
                   </div>
 
-                  {/* Content - with top margin to accommodate dates */}
-                  <div className="pt-16 md:pt-20">
+                  {/* Content */}
+                  <div>
                     <h3 className="text-lg md:text-2xl font-bold text-green-300 mb-1 md:mb-2 break-words">{edu.degree}</h3>
                     <p className="text-base md:text-lg text-green-400 mb-1 md:mb-2 break-words">{edu.school}</p>
                     <p className="text-xs md:text-sm text-green-400/80 mb-2 md:mb-3">{edu.field}</p>
@@ -715,26 +719,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t border-green-400/20 py-6 md:py-8 text-center text-xs md:text-sm text-green-400/60">
-        <p>&copy; 2025 Kareem Mokhtar. Built with React, Tailwind CSS, and terminal vibes.</p>
-      </footer>
-
-      <style>{`
-        @keyframes glow {
-          0%, 100% {
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-          }
-          50% {
-            text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
-          }
-        }
-
-        .glow {
-          animation: glow 2s ease-in-out infinite;
-        }
-      `}</style>
     </div>
   );
 }
