@@ -418,12 +418,12 @@ export default function Home() {
                     }}
                   >
                     {/* Date badge - positioned just above the item, closer */}
-                    <div className="absolute -top-5 md:-top-6 left-0 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono glow">
+                    <div className="absolute -top-5 md:-top-6 left-0 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono" style={{ textShadow: '0 0 10px #00ff00, 0 0 20px #00ff00' }}>
                       {dateDisplay}
                     </div>
 
                     {/* Dot on timeline - perfectly centered on the line */}
-                    <div className="absolute -left-3.5 md:-left-4.5 -top-4 md:-top-5 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow border-2 border-black" />
+                    <div className="absolute -left-4 md:-left-4.5 -top-4 md:-top-5 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black" style={{ boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00' }} />
 
                     {/* Content */}
                     <div>
@@ -577,12 +577,12 @@ export default function Home() {
                   }}
                 >
                   {/* Date badge - positioned just above the item, closer */}
-                  <div className="absolute -top-5 md:-top-6 left-0 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono glow">
+                  <div className="absolute -top-5 md:-top-6 left-0 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono" style={{ textShadow: '0 0 10px #00ff00, 0 0 20px #00ff00' }}>
                     {edu.startDate} — {edu.endDate}
                   </div>
 
                   {/* Dot on timeline - perfectly centered on the line */}
-                  <div className="absolute -left-3.5 md:-left-4.5 -top-4 md:-top-5 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow border-2 border-black" />
+                  <div className="absolute -left-4 md:-left-4.5 -top-4 md:-top-5 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black" style={{ boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00' }} />
 
                   {/* Content */}
                   <div>
