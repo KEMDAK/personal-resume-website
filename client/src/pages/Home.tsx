@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Mail, Github, Linkedin, ChevronDown } from 'lucide-react';
+import { Mail, Github, Linkedin, ChevronDown, ArrowRight } from 'lucide-react';
 
 /**
  * DESIGN PHILOSOPHY: Green Terminal Vibe with Advanced Animations
@@ -9,6 +9,7 @@ import { Mail, Github, Linkedin, ChevronDown } from 'lucide-react';
  * - Mobile-first responsive design
  * - Separate professional, volunteer, and teaching experience
  * - Complete LinkedIn data integration
+ * - Enhanced timeline with vertical bar, aligned dots, and dates
  */
 
 interface TimelineItem {
@@ -29,7 +30,7 @@ interface AnimatedLineProps {
 }
 
 const AnimatedLine: React.FC<AnimatedLineProps> = ({ text, index, isVisible }) => {
-  const delay = index * 0.05; // Stagger each line by 50ms
+  const delay = index * 0.05;
   
   return (
     <div
@@ -54,7 +55,6 @@ export default function Home() {
     const handleScroll = () => {
       setScrollY(window.scrollY);
       
-      // Check which sections are in view
       const newVisible = new Set<string>();
       
       Object.entries(sectionRefs.current).forEach(([id, element]) => {
@@ -76,7 +76,7 @@ export default function Home() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -343,28 +343,32 @@ export default function Home() {
           <h2 className="text-4xl md:text-5xl font-bold mb-12 md:mb-16 text-green-300 glow">
             &gt; {title}
           </h2>
-          <div className="space-y-12 md:space-y-16">
-            {items.map((item, idx) => (
-              <div
-                key={idx}
-                id={`${id}-${idx}`}
-                className="transition-all duration-1000"
-              >
-                <div className="flex gap-4 md:gap-8">
-                  {/* Timeline */}
-                  <div className="flex flex-col items-center flex-shrink-0">
-                    <div className="w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow mb-3 md:mb-4" />
-                    {idx < items.length - 1 && (
-                      <div className="w-0.5 md:w-1 h-24 md:h-32 bg-green-400/30" />
-                    )}
+          <div className="relative">
+            {/* Vertical timeline line */}
+            <div className="absolute left-1.5 md:left-2 top-0 bottom-0 w-0.5 md:w-1 bg-gradient-to-b from-green-400 to-green-400/30" />
+            
+            <div className="space-y-12 md:space-y-16 pl-8 md:pl-12">
+              {items.map((item, idx) => (
+                <div
+                  key={idx}
+                  id={`${id}-${idx}`}
+                  className="relative transition-all duration-1000"
+                >
+                  {/* Dot on timeline */}
+                  <div className="absolute -left-7 md:-left-10 top-1 md:top-2 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow border-2 border-black" />
+                  
+                  {/* Date badge aligned with dot */}
+                  <div className="absolute -left-24 md:-left-32 top-0 md:top-1 text-xs md:text-sm text-green-400/70 whitespace-nowrap font-mono">
+                    {item.startDate} — {item.endDate}
                   </div>
+
                   {/* Content */}
-                  <div className="pb-8 flex-1 min-w-0">
+                  <div className="pt-0 md:pt-1">
                     <h3 className="text-lg md:text-2xl font-bold text-green-300 mb-1 md:mb-2 break-words">{item.title}</h3>
                     <p className="text-base md:text-lg text-green-400 mb-1 md:mb-2 break-words">{item.company}</p>
-                    <p className="text-xs md:text-sm text-green-400/60 mb-2 md:mb-4">
-                      {item.startDate} — {item.endDate} {item.duration && `(${item.duration})`}
-                    </p>
+                    {item.duration && (
+                      <p className="text-xs md:text-sm text-green-400/60 mb-2 md:mb-3">{item.duration}</p>
+                    )}
                     {item.location && (
                       <p className="text-xs md:text-sm text-green-400/60 mb-3 md:mb-4">{item.location}</p>
                     )}
@@ -380,8 +384,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -492,33 +496,34 @@ export default function Home() {
           <h2 className="text-4xl md:text-5xl font-bold mb-12 md:mb-16 text-green-300 glow">
             &gt; EDUCATION
           </h2>
-          <div className="space-y-12 md:space-y-16">
-            {education.map((edu, idx) => (
-              <div
-                key={idx}
-                id={`edu-${idx}`}
-                className="transition-all duration-1000"
-              >
-                <div className="flex gap-4 md:gap-8">
-                  {/* Timeline */}
-                  <div className="flex flex-col items-center flex-shrink-0">
-                    <div className="w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow mb-3 md:mb-4" />
-                    {idx < education.length - 1 && (
-                      <div className="w-0.5 md:w-1 h-24 md:h-32 bg-green-400/30" />
-                    )}
+          <div className="relative">
+            {/* Vertical timeline line */}
+            <div className="absolute left-1.5 md:left-2 top-0 bottom-0 w-0.5 md:w-1 bg-gradient-to-b from-green-400 to-green-400/30" />
+            
+            <div className="space-y-12 md:space-y-16 pl-8 md:pl-12">
+              {education.map((edu, idx) => (
+                <div
+                  key={idx}
+                  id={`edu-${idx}`}
+                  className="relative transition-all duration-1000"
+                >
+                  {/* Dot on timeline */}
+                  <div className="absolute -left-7 md:-left-10 top-1 md:top-2 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 glow border-2 border-black" />
+                  
+                  {/* Date badge aligned with dot */}
+                  <div className="absolute -left-24 md:-left-32 top-0 md:top-1 text-xs md:text-sm text-green-400/70 whitespace-nowrap font-mono">
+                    {edu.startDate} — {edu.endDate}
                   </div>
+
                   {/* Content */}
-                  <div className="pb-8 flex-1 min-w-0">
+                  <div className="pt-0 md:pt-1">
                     <h3 className="text-lg md:text-2xl font-bold text-green-300 mb-1 md:mb-2 break-words">{edu.degree}</h3>
                     <p className="text-base md:text-lg text-green-400 mb-1 md:mb-2 break-words">{edu.school}</p>
                     <p className="text-xs md:text-sm text-green-400/80 mb-2 md:mb-3">{edu.field}</p>
-                    <p className="text-xs md:text-sm text-green-400/60">
-                      {edu.startDate} — {edu.endDate}
-                    </p>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -535,6 +540,11 @@ export default function Home() {
                 key={idx}
                 id={`skill-${idx}`}
                 className="transition-all duration-1000"
+                style={{
+                  opacity: isSectionVisible('skills') ? 1 : 0,
+                  transform: isSectionVisible('skills') ? 'translateY(0px)' : 'translateY(20px)',
+                  transitionDelay: `${idx * 0.05}s`
+                }}
               >
                 <h3 className="text-lg md:text-xl font-bold text-green-300 mb-4 md:mb-6">{skillGroup.category}</h3>
                 <div className="flex flex-wrap gap-2 md:gap-3">
@@ -565,6 +575,11 @@ export default function Home() {
                 key={idx}
                 id={`lang-${idx}`}
                 className="border border-green-400/30 p-4 md:p-6 transition-all duration-1000"
+                style={{
+                  opacity: isSectionVisible('skills') ? 1 : 0,
+                  transform: isSectionVisible('skills') ? 'translateY(0px)' : 'translateY(20px)',
+                  transitionDelay: `${idx * 0.05}s`
+                }}
               >
                 <h3 className="text-base md:text-lg font-bold text-green-300 mb-2">{lang.name}</h3>
                 <p className="text-sm md:text-base text-green-400/80">{lang.level}</p>
@@ -586,6 +601,11 @@ export default function Home() {
                 key={idx}
                 id={`cert-${idx}`}
                 className="border-l-4 border-green-400 pl-4 md:pl-6 py-3 md:py-4 transition-all duration-1000"
+                style={{
+                  opacity: isSectionVisible('skills') ? 1 : 0,
+                  transform: isSectionVisible('skills') ? 'translateY(0px)' : 'translateY(20px)',
+                  transitionDelay: `${idx * 0.05}s`
+                }}
               >
                 <h3 className="text-base md:text-lg font-bold text-green-300 mb-1">{cert.name}</h3>
                 <p className="text-sm md:text-base text-green-400/80">{cert.issuer}</p>
@@ -608,20 +628,23 @@ export default function Home() {
           <div className="flex justify-center gap-4 md:gap-6 flex-wrap">
             <a
               href="mailto:kareem@example.com"
-              className="px-4 md:px-6 py-2 md:py-3 border border-green-400 text-xs md:text-sm text-green-400 hover:bg-green-400/10 hover:text-green-200 transition-all hover:glow"
+              className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 border border-green-400 text-xs md:text-sm text-green-400 hover:bg-green-400/10 hover:text-green-200 transition-all hover:glow"
             >
+              <Mail className="w-4 md:w-5 h-4 md:h-5" />
               Email Me
             </a>
             <a
               href="https://linkedin.com/in/kareem-mokhtar"
-              className="px-4 md:px-6 py-2 md:py-3 border border-green-400 text-xs md:text-sm text-green-400 hover:bg-green-400/10 hover:text-green-200 transition-all hover:glow"
+              className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 border border-green-400 text-xs md:text-sm text-green-400 hover:bg-green-400/10 hover:text-green-200 transition-all hover:glow"
             >
+              <Linkedin className="w-4 md:w-5 h-4 md:h-5" />
               LinkedIn
             </a>
             <a
               href="https://github.com"
-              className="px-4 md:px-6 py-2 md:py-3 border border-green-400 text-xs md:text-sm text-green-400 hover:bg-green-400/10 hover:text-green-200 transition-all hover:glow"
+              className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 border border-green-400 text-xs md:text-sm text-green-400 hover:bg-green-400/10 hover:text-green-200 transition-all hover:glow"
             >
+              <Github className="w-4 md:w-5 h-4 md:h-5" />
               GitHub
             </a>
           </div>
