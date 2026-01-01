@@ -582,7 +582,7 @@ export default function Home() {
                   </div>
 
                   {/* Dot on timeline - overlapping with the line */}
-                  <div className="absolute left-3 -translate-x-1/2 -top-4 md:-top-5 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black" style={{ boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00', marginLeft: '0.375rem' }} />
+                  <div className="absolute left-0 -translate-x-1/2 -top-4 md:-top-5 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black" style={{ boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00', marginLeft: '0.375rem' }} />
 
                   {/* Content */}
                   <div>
