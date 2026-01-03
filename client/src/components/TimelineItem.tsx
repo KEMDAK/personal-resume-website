@@ -79,9 +79,10 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({
 
       {/* Dot on timeline - positioned to overlap with the vertical line on the left */}
       <div 
-        className="absolute -left-2 md:-left-2.5 -top-4 md:-top-5 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black"
+        className="absolute w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black -top-4 md:-top-5"
         style={{ 
-          boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00'
+          boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00',
+          left: '-38px'
         }}
       />
 

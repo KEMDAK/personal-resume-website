@@ -55,11 +55,11 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({
 
         {/* Timeline container */}
         <div className="relative">
-          {/* Vertical timeline line with gradient - extended to top with negative margin */}
-          <div className="absolute left-1.5 md:left-2 -top-8 md:-top-10 bottom-0 w-0.5 md:w-1 bg-gradient-to-b from-green-400 to-green-400/30" />
+          {/* Vertical timeline line with gradient - extended to top to middle of first dot */}
+          <div className="absolute left-1.5 md:left-2 -top-2 md:-top-2.5 bottom-0 w-0.5 md:w-1 bg-gradient-to-b from-green-400 to-green-400/30" />
           
-          {/* Timeline items container - add top padding to account for extended timeline */}
-          <div className="space-y-12 md:space-y-16 pl-8 md:pl-12 pt-8 md:pt-10">
+          {/* Timeline items container */}
+          <div className="space-y-12 md:space-y-16 pl-8 md:pl-12">
             {items.map((item, idx) => (
               <TimelineItem
                 key={idx}

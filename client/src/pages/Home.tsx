@@ -113,11 +113,11 @@ export default function Home() {
 
           {/* Timeline container */}
           <div className="relative">
-            {/* Vertical timeline line with gradient - extended to top */}
-            <div className="absolute left-1.5 md:left-2 -top-8 md:-top-10 bottom-0 w-0.5 md:w-1 bg-gradient-to-b from-green-400 to-green-400/30" />
+            {/* Vertical timeline line with gradient - extended to top to middle of first dot */}
+            <div className="absolute left-1.5 md:left-2 -top-2 md:-top-2.5 bottom-0 w-0.5 md:w-1 bg-gradient-to-b from-green-400 to-green-400/30" />
 
-            {/* Education items - add top padding */}
-            <div className="space-y-12 md:space-y-16 pl-8 md:pl-12 pt-8 md:pt-10">
+            {/* Education items */}
+            <div className="space-y-12 md:space-y-16 pl-8 md:pl-12">
               {education.map((edu, idx) => (
                 <div
                   key={idx}
@@ -139,9 +139,10 @@ export default function Home() {
 
                   {/* Dot on timeline - positioned to overlap with vertical line */}
                   <div
-                    className="absolute -left-2 md:-left-2.5 -top-4 md:-top-5 w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black"
+                    className="absolute w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black -top-4 md:-top-5"
                     style={{
-                      boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00'
+                      boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00',
+                      left: '-38px'
                     }}
                   />
 
