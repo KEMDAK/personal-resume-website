@@ -82,8 +82,8 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({
         className="absolute w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black"
         style={{ 
           boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00',
-          left: '-32px',
-          top: '-21px'
+          left: '-31px',
+          top: '-20px'
         }}
       />
 
