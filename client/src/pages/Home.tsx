@@ -153,7 +153,18 @@ export default function Home() {
                       {edu.degree}
                     </h3>
                     <p className="text-base md:text-lg text-green-400 mb-1 md:mb-2 break-words">
-                      {edu.school}
+                      {edu.schoolUrl ? (
+                        <a 
+                          href={edu.schoolUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="hover:text-green-300 hover:glow transition-colors"
+                        >
+                          {edu.school}
+                        </a>
+                      ) : (
+                        edu.school
+                      )}
                     </p>
                     <p className="text-xs md:text-sm text-green-400/80 mb-2 md:mb-3">
                       {edu.field}

@@ -13,6 +13,8 @@ export interface TimelineItem {
   title: string;
   /** Company name, school name, or organization */
   company: string;
+  /** Optional URL to company/organization LinkedIn page */
+  companyUrl?: string;
   /** Start date in format "Mon YYYY" (e.g., "Jun 2024") */
   startDate: string;
   /** End date in format "Mon YYYY" or "Present" */
@@ -37,6 +39,8 @@ export interface EducationItem {
   degree: string;
   /** School/university name */
   school: string;
+  /** Optional URL to school/university LinkedIn page */
+  schoolUrl?: string;
   /** Field of study (e.g., "Computer Science") */
   field: string;
   /** Start date in format "Mon YYYY" */

@@ -94,9 +94,20 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({
           {item.title}
         </h3>
 
-        {/* Company / school name */}
+        {/* Company / school name - clickable if URL provided */}
         <p className="text-base md:text-lg text-green-400 mb-1 md:mb-2 break-words">
-          {item.company}
+          {item.companyUrl ? (
+            <a 
+              href={item.companyUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-green-300 hover:glow transition-colors"
+            >
+              {item.company}
+            </a>
+          ) : (
+            item.company
+          )}
         </p>
 
         {/* Duration (e.g., "1 yr 7 mos") */}

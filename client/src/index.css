@@ -81,6 +81,17 @@
   --sidebar-ring: #00ff00;
 }
 
+@keyframes growVertical {
+  from {
+    scaleY: 0;
+    transformOrigin: top;
+  }
+  to {
+    scaleY: 1;
+    transformOrigin: top;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

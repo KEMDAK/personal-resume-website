@@ -55,8 +55,13 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({
 
         {/* Timeline container */}
         <div className="relative">
-          {/* Vertical timeline line with gradient - extended to top to middle of first dot */}
-          <div className="absolute left-1.5 md:left-2 -top-2 md:-top-2.5 bottom-0 w-0.5 md:w-1 bg-gradient-to-b from-green-400 to-green-400/30" />
+          {/* Vertical timeline line with gradient - animated to grow with items */}
+          <div 
+            className="absolute left-1.5 md:left-2 -top-2 md:-top-2.5 bottom-0 w-0.5 md:w-1 bg-gradient-to-b from-green-400 to-green-400/30 origin-top"
+            style={{
+              animation: isSectionVisible(id) ? 'growVertical 1.2s ease-out forwards' : 'none'
+            }}
+          />
           
           {/* Timeline items container */}
           <div className="space-y-12 md:space-y-16 pl-8 md:pl-12">

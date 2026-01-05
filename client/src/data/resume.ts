@@ -29,6 +29,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Senior Software Engineer',
     company: 'Meta',
+    companyUrl: 'https://www.linkedin.com/company/meta/',
     startDate: 'Jun 2024',
     endDate: 'Present',
     location: 'Greater London, England, United Kingdom',
@@ -43,6 +44,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Software Engineer',
     company: 'Meta',
+    companyUrl: 'https://www.linkedin.com/company/meta/',
     startDate: 'Jan 2023',
     endDate: 'Jun 2024',
     location: 'Greater London, England, United Kingdom',
@@ -56,6 +58,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Junior Software Engineer',
     company: 'Meta',
+    companyUrl: 'https://www.linkedin.com/company/meta/',
     startDate: 'Jun 2022',
     endDate: 'Jan 2023',
     location: 'Greater London, England, United Kingdom',
@@ -69,6 +72,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Master Thesis Project',
     company: 'ABB',
+    companyUrl: 'https://www.linkedin.com/company/abb/',
     startDate: 'Sep 2021',
     endDate: 'Feb 2022',
     location: 'Baden-Württemberg, Germany',
@@ -81,6 +85,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Software Engineer Intern',
     company: 'Meta',
+    companyUrl: 'https://www.linkedin.com/company/meta/',
     startDate: 'Jun 2021',
     endDate: 'Aug 2021',
     description: [
@@ -93,6 +98,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Software Engineer Intern',
     company: 'HubSpot',
+    companyUrl: 'https://www.linkedin.com/company/hubspot/',
     startDate: 'Mar 2021',
     endDate: 'May 2021',
     description: [
@@ -105,6 +111,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Lead Software Engineer',
     company: 'Bleenco',
+    companyUrl: 'https://www.linkedin.com/company/bleenco/',
     startDate: 'Dec 2018',
     endDate: 'Feb 2021',
     location: 'Munich, Bavaria, Germany',
@@ -118,6 +125,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Back-end Developer',
     company: 'elmenus',
+    companyUrl: 'https://www.linkedin.com/company/elmenus/',
     startDate: 'Jul 2018',
     endDate: 'Sep 2018',
     description: [
@@ -130,6 +138,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Software Engineer (Free Lancing)',
     company: 'Deutsches Forschungszentrum für Künstliche Intelligenz (DFKI)',
+    companyUrl: 'https://www.linkedin.com/company/dfki/',
     startDate: 'Jan 2018',
     endDate: 'Dec 2018',
     description: [
@@ -142,6 +151,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Junior Researcher',
     company: 'Deutsches Forschungszentrum für Künstliche Intelligenz (DFKI)',
+    companyUrl: 'https://www.linkedin.com/company/dfki/',
     startDate: 'Jan 2017',
     endDate: 'Dec 2018',
     description: [
@@ -223,6 +233,7 @@ export const education: EducationItem[] = [
   {
     degree: 'Master of Science',
     school: 'Technical University Munich',
+    schoolUrl: 'https://www.linkedin.com/school/technical-university-of-munich/',
     field: 'Computer Science',
     startDate: 'Sep 2018',
     endDate: 'Feb 2022'
@@ -230,6 +241,7 @@ export const education: EducationItem[] = [
   {
     degree: 'Bachelor of Science',
     school: 'German University in Cairo',
+    schoolUrl: 'https://www.linkedin.com/school/the-german-university-in-cairo/',
     field: 'Computer Science & Engineering',
     startDate: 'Sep 2013',
     endDate: 'Jun 2018'
