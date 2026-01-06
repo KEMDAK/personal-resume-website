@@ -23,7 +23,7 @@ interface NavigationProps {
  */
 export const Navigation: React.FC<NavigationProps> = ({ onNavigate }) => {
   // List of navigation sections
-  const sections = ['about', 'experience', 'education', 'skills', 'contact'];
+  const sections = ['about', 'experience', 'education', 'projects', 'skills', 'contact'];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur border-b border-green-400/30">

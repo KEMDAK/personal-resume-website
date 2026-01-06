@@ -55,7 +55,18 @@ export const CertificationCard: React.FC<CertificationCardProps> = ({
 
       {/* Issuing organization */}
       <p className="text-sm md:text-base text-green-400/80">
-        {certification.issuer}
+        {certification.issuerUrl ? (
+          <a
+            href={certification.issuerUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-green-300 hover:glow transition-colors"
+          >
+            {certification.issuer}
+          </a>
+        ) : (
+          certification.issuer
+        )}
       </p>
 
       {/* Issue date */}

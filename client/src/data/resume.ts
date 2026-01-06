@@ -29,7 +29,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Senior Software Engineer',
     company: 'Meta',
-    companyUrl: 'https://www.linkedin.com/company/meta/',
+    companyUrl: 'https://www.meta.com/',
     startDate: 'Jun 2024',
     endDate: 'Present',
     location: 'Greater London, England, United Kingdom',
@@ -44,7 +44,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Software Engineer',
     company: 'Meta',
-    companyUrl: 'https://www.linkedin.com/company/meta/',
+    companyUrl: 'https://www.meta.com/',
     startDate: 'Jan 2023',
     endDate: 'Jun 2024',
     location: 'Greater London, England, United Kingdom',
@@ -58,7 +58,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Junior Software Engineer',
     company: 'Meta',
-    companyUrl: 'https://www.linkedin.com/company/meta/',
+    companyUrl: 'https://www.meta.com/',
     startDate: 'Jun 2022',
     endDate: 'Jan 2023',
     location: 'Greater London, England, United Kingdom',
@@ -72,7 +72,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Master Thesis Project',
     company: 'ABB',
-    companyUrl: 'https://www.linkedin.com/company/abb/',
+    companyUrl: 'https://www.abb.com/global/en',
     startDate: 'Sep 2021',
     endDate: 'Feb 2022',
     location: 'Baden-Württemberg, Germany',
@@ -85,7 +85,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Software Engineer Intern',
     company: 'Meta',
-    companyUrl: 'https://www.linkedin.com/company/meta/',
+    companyUrl: 'https://www.meta.com/',
     startDate: 'Jun 2021',
     endDate: 'Aug 2021',
     description: [
@@ -98,7 +98,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Software Engineer Intern',
     company: 'HubSpot',
-    companyUrl: 'https://www.linkedin.com/company/hubspot/',
+    companyUrl: 'https://www.hubspot.com/',
     startDate: 'Mar 2021',
     endDate: 'May 2021',
     description: [
@@ -111,7 +111,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Lead Software Engineer',
     company: 'Bleenco',
-    companyUrl: 'https://www.linkedin.com/company/bleenco/',
+    companyUrl: 'https://bleenco.com/',
     startDate: 'Dec 2018',
     endDate: 'Feb 2021',
     location: 'Munich, Bavaria, Germany',
@@ -125,8 +125,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Back-end Developer',
     company: 'elmenus',
-    companyUrl: 'https://www.linkedin.com/company/elmenus/',
-    startDate: 'Jul 2018',
+    companyUrl: 'https://www.elmenus.com/',  startDate: 'Jul 2018',
     endDate: 'Sep 2018',
     description: [
       'Developed backend services for restaurant discovery and ordering platform',
@@ -138,7 +137,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Software Engineer (Free Lancing)',
     company: 'Deutsches Forschungszentrum für Künstliche Intelligenz (DFKI)',
-    companyUrl: 'https://www.linkedin.com/company/dfki/',
+    companyUrl: 'https://www.dfki.de/en/web',
     startDate: 'Jan 2018',
     endDate: 'Dec 2018',
     description: [
@@ -151,7 +150,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Junior Researcher',
     company: 'Deutsches Forschungszentrum für Künstliche Intelligenz (DFKI)',
-    companyUrl: 'https://www.linkedin.com/company/dfki/',
+    companyUrl: 'https://www.dfki.de/en/web',
     startDate: 'Jan 2017',
     endDate: 'Dec 2018',
     description: [
@@ -164,6 +163,7 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Software Developer (Intern)',
     company: 'eSEED',
+    companyUrl: 'https://eseed.net',
     startDate: 'Jun 2016',
     endDate: 'Jul 2016',
     description: [
@@ -195,6 +195,7 @@ export const volunteerExperience: TimelineItem[] = [
   {
     title: 'Lead Software Developer',
     company: 'IEEE German University in Cairo Student Branch',
+    companyUrl: 'https://www.ieeeguc.tech',
     startDate: 'Mar 2016',
     endDate: 'Apr 2017',
     description: [
@@ -303,6 +304,7 @@ export const certifications: Certification[] = [
   {
     name: 'Google Developer Challenge Scholarship',
     issuer: 'Udacity',
+    issuerUrl: 'https://www.udacity.com/',
     date: 'Nov 2017'
   }
 ];

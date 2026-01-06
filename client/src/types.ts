@@ -77,6 +77,8 @@ export interface Certification {
   name: string;
   /** Organization that issued the certification */
   issuer: string;
+  /** Optional URL to the issuer's website */
+  issuerUrl?: string;
   /** Date issued in format "Mon YYYY" */
   date: string;
 }

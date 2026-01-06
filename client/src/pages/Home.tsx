@@ -22,6 +22,7 @@ import { SkillsSection } from '@/components/SkillsSection';
 import { LanguagesSection } from '@/components/LanguagesSection';
 import { CertificationsSection } from '@/components/CertificationsSection';
 import { ContactSection } from '@/components/ContactSection';
+import { ProjectsSection } from '@/components/ProjectsSection';
 
 // Import resume data
 import {
@@ -33,6 +34,7 @@ import {
   languages,
   certifications
 } from '@/data/resume';
+import { projects } from '@/data/projects';
 
 /**
  * Home Component
@@ -175,6 +177,20 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Projects Section */}
+      <section
+        id="projects"
+        ref={(el) => {
+          if (el) sectionRefs.current['projects'] = el;
+        }}
+        className="border-b border-green-400/20"
+      >
+        <ProjectsSection
+          projects={projects}
+          isVisible={isSectionVisible('projects')}
+        />
       </section>
 
       {/* Skills Section */}
