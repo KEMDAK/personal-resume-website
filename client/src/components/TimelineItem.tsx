@@ -17,6 +17,7 @@
 import { TimelineItem as TimelineItemType } from '@/types';
 import { AnimatedLine } from './AnimatedLine';
 import { calculateDuration } from '@/utils/dateUtils';
+import { ExternalLink } from 'lucide-react';
 
 interface TimelineItemProps {
   /** The timeline item data */
@@ -101,9 +102,10 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({
               href={item.companyUrl} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="hover:text-green-300 hover:glow transition-colors"
+              className="inline-flex items-center gap-1.5 hover:text-green-300 hover:glow transition-colors"
             >
               {item.company}
+              <ExternalLink size={14} className="flex-shrink-0" />
             </a>
           ) : (
             item.company

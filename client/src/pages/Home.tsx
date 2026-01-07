@@ -23,6 +23,7 @@ import { LanguagesSection } from '@/components/LanguagesSection';
 import { CertificationsSection } from '@/components/CertificationsSection';
 import { ContactSection } from '@/components/ContactSection';
 import { ProjectsSection } from '@/components/ProjectsSection';
+import { ExternalLink } from 'lucide-react';
 
 // Import resume data
 import {
@@ -160,9 +161,10 @@ export default function Home() {
                           href={edu.schoolUrl} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="hover:text-green-300 hover:glow transition-colors"
+                          className="inline-flex items-center gap-1.5 hover:text-green-300 hover:glow transition-colors"
                         >
                           {edu.school}
+                          <ExternalLink size={14} className="flex-shrink-0" />
                         </a>
                       ) : (
                         edu.school

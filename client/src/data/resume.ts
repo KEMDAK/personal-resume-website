@@ -182,6 +182,7 @@ export const volunteerExperience: TimelineItem[] = [
   {
     title: 'Competitive Programming Contestant',
     company: 'ACM Programming Contests',
+    companyUrl: 'https://www.acm.org/',
     startDate: 'Jun 2016',
     endDate: 'Present',
     description: [
@@ -215,6 +216,7 @@ export const teachingExperience: TimelineItem[] = [
   {
     title: 'Junior Teaching Assistant',
     company: 'The German University in Cairo',
+    companyUrl: 'https://www.guc.edu.eg/',
     startDate: 'Sep 2015',
     endDate: 'Jun 2016',
     description: [
@@ -234,7 +236,7 @@ export const education: EducationItem[] = [
   {
     degree: 'Master of Science',
     school: 'Technical University Munich',
-    schoolUrl: 'https://www.linkedin.com/school/technical-university-of-munich/',
+    schoolUrl: 'https://www.tum.de/en/',
     field: 'Computer Science',
     startDate: 'Sep 2018',
     endDate: 'Feb 2022'
@@ -242,7 +244,7 @@ export const education: EducationItem[] = [
   {
     degree: 'Bachelor of Science',
     school: 'German University in Cairo',
-    schoolUrl: 'https://www.linkedin.com/school/the-german-university-in-cairo/',
+    schoolUrl: 'https://www.guc.edu.eg/',
     field: 'Computer Science & Engineering',
     startDate: 'Sep 2013',
     endDate: 'Jun 2018'

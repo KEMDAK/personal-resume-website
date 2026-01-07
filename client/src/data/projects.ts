@@ -2,6 +2,7 @@
  * Personal Projects Data
  * 
  * Contains all personal projects with descriptions, technologies, and links
+ * All projects are from LinkedIn profile with real descriptions and links
  */
 
 export interface Project {
@@ -23,11 +24,16 @@ export interface Project {
  */
 export const projects: Project[] = [
   {
-    name: 'Interactive Resume Website',
-    description: 'A visually stunning, interactive resume website with green terminal aesthetic, smooth scroll animations, and clickable links to all professional experiences and education.',
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-    githubUrl: 'https://github.com/kareem-mokhtar',
-    demoUrl: 'https://kareem-mokhtar.com'
+    name: 'Mini Monopoly',
+    description: 'An embedded system implementation using Arduino to automate the well-known monopoly game. Creates a physical monopoly game that has the same functionality and features of the digital version.',
+    technologies: ['Arduino', 'C', 'Embedded Systems', 'Hardware'],
+    githubUrl: 'https://github.com/kareem-mokhtar'
+  },
+  {
+    name: 'أُهرُب يا وِلد (Ohrob ya weld) - Horror Game',
+    description: 'A horror game implemented using OpenGL. The story involves a character trapped in a haunted house who must figure out a 4-digit pass code to escape the exit door by solving puzzles and collecting clues scattered throughout the house before time runs out.',
+    technologies: ['OpenGL', 'C++', 'Game Development', 'Graphics Programming'],
+    githubUrl: 'https://github.com/kareem-mokhtar'
   },
   {
     name: 'Tensor Factorization Music Recommender',
@@ -93,12 +99,6 @@ export const projects: Project[] = [
     name: 'Qt Desktop Applications',
     description: 'Developed cross-platform desktop applications using Qt framework. Created user-friendly interfaces for various tools and utilities.',
     technologies: ['Qt', 'C++', 'Desktop Applications'],
-    githubUrl: 'https://github.com/kareem-mokhtar'
-  },
-  {
-    name: 'Full-Stack Web Applications',
-    description: 'Built complete web applications from backend to frontend using modern technologies. Implemented features like authentication, real-time updates, and data visualization.',
-    technologies: ['Node.js', 'React', 'MongoDB', 'Express.js', 'TypeScript'],
     githubUrl: 'https://github.com/kareem-mokhtar'
   }
 ];

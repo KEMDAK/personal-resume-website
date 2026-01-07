@@ -63,7 +63,7 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({
             }}
           />
           
-          {/* Timeline items container */}
+          {/* Timeline items container with staggered animations */}
           <div className="space-y-12 md:space-y-16 pl-8 md:pl-12">
             {items.map((item, idx) => (
               <TimelineItem
