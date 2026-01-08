@@ -65,26 +65,15 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
       {/* Links */}
       <div className="flex gap-3">
-        {project.githubUrl && (
+        {project.projectUrl && (
           <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-3 py-2 text-sm border border-green-400/50 text-green-300 rounded hover:bg-green-400/10 hover:border-green-400 transition-colors"
-          >
-            <Github size={16} />
-            Code
-          </a>
-        )}
-        {project.demoUrl && (
-          <a
-            href={project.demoUrl}
+            href={project.projectUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-3 py-2 text-sm border border-green-400/50 text-green-300 rounded hover:bg-green-400/10 hover:border-green-400 transition-colors"
           >
             <ExternalLink size={16} />
-            Demo
+            View
           </a>
         )}
       </div>

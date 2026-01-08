@@ -1,8 +1,8 @@
 /**
  * Personal Projects Data
  * 
- * Contains all personal projects with descriptions, technologies, and links
- * All projects are from LinkedIn profile with real descriptions and links
+ * Contains all 13 personal projects from LinkedIn profile with descriptions, technologies, and links
+ * All projects are from LinkedIn profile with real descriptions and links where available
  */
 
 export interface Project {
@@ -12,93 +12,81 @@ export interface Project {
   description: string;
   /** Array of technologies used */
   technologies: string[];
-  /** Optional GitHub repository URL */
-  githubUrl?: string;
-  /** Optional live demo URL */
-  demoUrl?: string;
+  /** Optional project URL (GitHub, demo, or app store) */
+  projectUrl?: string;
 }
 
 /**
  * Personal Projects
- * Sorted by relevance/recency
+ * All 13 projects from LinkedIn profile, sorted by date (newest first)
  */
 export const projects: Project[] = [
   {
     name: 'Mini Monopoly',
     description: 'An embedded system implementation using Arduino to automate the well-known monopoly game. Creates a physical monopoly game that has the same functionality and features of the digital version.',
     technologies: ['Arduino', 'C', 'Embedded Systems', 'Hardware'],
-    githubUrl: 'https://github.com/kareem-mokhtar'
   },
   {
     name: 'أُهرُب يا وِلد (Ohrob ya weld) - Horror Game',
     description: 'A horror game implemented using OpenGL. The story involves a character trapped in a haunted house who must figure out a 4-digit pass code to escape the exit door by solving puzzles and collecting clues scattered throughout the house before time runs out.',
     technologies: ['OpenGL', 'C++', 'Game Development', 'Graphics Programming'],
-    githubUrl: 'https://github.com/kareem-mokhtar'
   },
   {
-    name: 'Tensor Factorization Music Recommender',
-    description: 'Proof of concept for a music recommendation system using tensor factorization techniques. Developed at DFKI for analyzing and predicting user music preferences.',
-    technologies: ['Python', 'Machine Learning', 'Tensor Factorization', 'Data Analysis'],
-    githubUrl: 'https://github.com/kareem-mokhtar'
+    name: 'AskTube',
+    description: 'A chat bot that answers questions about videos (e.g., "what is the most popular music video?", "show me trending videos", "show me videos about cats"). The chat bot was implemented using Go for the server-side and an Android application for the client-side.',
+    technologies: ['Java', 'Go', 'Android', 'Chatbot'],
   },
   {
-    name: 'OCR Correction System for Historical Documents',
-    description: 'Designed and implemented an OCR correction system for historical documents using deep learning. Improved accuracy of optical character recognition for digitized archives.',
-    technologies: ['Python', 'Deep Learning', 'OCR', 'Computer Vision'],
-    githubUrl: 'https://github.com/kareem-mokhtar'
+    name: 'Mini Operating System',
+    description: 'A simplified OS implementation with C that supports creating and deleting directories, creating, deleting, copying, moving, editing and viewing text files.',
+    technologies: ['C', 'Operating Systems', 'Systems Programming'],
   },
   {
-    name: 'AI Studio Platform (Bleenco)',
-    description: 'Led development of an AI-powered platform for automating analog processes and upgrading legacy systems. Built sensor-based solutions with AI capabilities for enterprise clients.',
-    technologies: ['Node.js', 'React', 'Python', 'Machine Learning', 'Kubernetes'],
-    demoUrl: 'https://bleenco.com'
+    name: 'Smart Trash',
+    description: 'A trash can that opens automatically when someone wants to throw trash in it. Also sends a signal to the residential trash pick-up company whenever it is full.',
+    technologies: ['C', 'IoT', 'Embedded Systems', 'Hardware'],
   },
   {
-    name: 'Restaurant Discovery & Ordering Platform (elmenus)',
-    description: 'Developed backend services for a food discovery and ordering platform. Analyzed user data to improve platform experience and recommendation algorithms.',
-    technologies: ['Node.js', 'MongoDB', 'Express.js', 'Data Analytics'],
-    demoUrl: 'https://www.elmenus.com'
+    name: 'Mini Chatting Application',
+    description: 'A simple chatting application implemented using Java socket programming. It is a LAN chatting application based on a Client-Server model.',
+    technologies: ['Java', 'Networking', 'Socket Programming'],
   },
   {
-    name: 'Android Mobile Applications',
-    description: 'Developed multiple Android applications and web applications using modern frameworks and best practices for user experience and performance.',
-    technologies: ['Android', 'Java', 'Ionic', 'WordPress', 'ExpressJS'],
-    githubUrl: 'https://github.com/kareem-mokhtar'
+    name: 'GUC Switching Assistant',
+    description: 'An Android application for GUC students to make the switching tutorial process easier by automating the search process. Worked on this project with a team of two. The application was released in summer 2015.',
+    technologies: ['JavaScript', 'Node.js', 'Android'],
+    projectUrl: 'https://play.google.com/store/apps/details?id=com.nmk_team.gucswitchingassistant',
   },
   {
-    name: 'Billing Management Experience (HubSpot)',
-    description: 'Contributed to HubSpot\'s billing management system as an intern, working on features that help businesses manage their subscriptions and payments.',
-    technologies: ['JavaScript', 'React', 'Node.js', 'CRM Systems'],
-    demoUrl: 'https://www.hubspot.com'
+    name: 'IEEEGUCSB-System',
+    description: 'A server-side project developed to manage IEEE GUC student branch (a large working group with hierarchical structure). The project acts as a task assignment, evaluation system and channel of communication between members. Developed using ExpressJS.',
+    technologies: ['HTML', 'JavaScript', 'Node.js', 'Express.js'],
+    projectUrl: 'https://github.com/KEMDAK/IEEEGUCSB-System',
   },
   {
-    name: 'Meta Integrity Experience Platform',
-    description: 'Part of the Integrity Experience team at Meta, responsible for empowering users to make informed decisions on Meta platforms through transparent tools and information.',
-    technologies: ['JavaScript', 'React', 'Python', 'Large-Scale Systems'],
-    demoUrl: 'https://www.meta.com'
+    name: 'Processor Simulator',
+    description: 'A project to simulate a Superscalar out-of-order 16-bit RISC processor. Implemented a full memory hierarchy with dynamic number of caches and a processor that uses Tomasulo\'s algorithm with speculation to simulate any assembly program.',
+    technologies: ['Java', 'Computer Architecture', 'Systems Design'],
   },
   {
-    name: 'Competitive Programming Solutions',
-    description: 'Solved 1000+ algorithmic challenges on various online judges. Finalist in ACM Egyptian Collegiate Programming Contest 2016 and ranked 35th in ACM Arab Contest.',
-    technologies: ['C++', 'Java', 'Algorithms', 'Data Structures'],
-    githubUrl: 'https://github.com/kareem-mokhtar'
+    name: 'IEEE GUC SB Elections System',
+    description: 'A secure election system for conducting the yearly upper board elections of IEEE GUC student branch through their website. Implemented using the Laravel framework.',
+    technologies: ['HTML', 'Laravel', 'PHP', 'Web Development'],
   },
   {
-    name: 'IEEE Student Branch Software Projects',
-    description: 'Led a team of 14 software developers at IEEE German University in Cairo Student Branch. Managed three sub-teams: Web back-end, Web front-end, and Android development.',
-    technologies: ['Node.js', 'React', 'Android', 'Team Leadership'],
-    githubUrl: 'https://www.ieeeguc.tech'
+    name: 'Air-Madagascar Online Booking System',
+    description: 'An educational project implementing a single page web application to act as a mock online reservation system for Air Madagascar using the MEAN stack (MongoDB, ExpressJS, AngularJS and Node.js). Also includes a hybrid mobile application implemented using Ionic.',
+    technologies: ['HTML', 'Node.js', 'MongoDB', 'AngularJS', 'Ionic', 'Express.js'],
   },
   {
-    name: 'Master Thesis: Automation Systems at ABB',
-    description: 'Developed automation systems and control software for industrial applications. Focused on scalability, reliability, and performance for enterprise-level systems.',
-    technologies: ['Java', 'C++', 'Systems Design', 'Industrial Automation'],
-    githubUrl: 'https://github.com/kareem-mokhtar'
+    name: 'Relational Database Management System (RDBMS)',
+    description: 'A relational database management system implemented in Java. Supports creation of tables and indexes using B+ tree data structure, insertion, deletion, selection (search), and update operations.',
+    technologies: ['Java', 'Databases', 'Data Structures', 'B+ Trees'],
   },
   {
-    name: 'Qt Desktop Applications',
-    description: 'Developed cross-platform desktop applications using Qt framework. Created user-friendly interfaces for various tools and utilities.',
-    technologies: ['Qt', 'C++', 'Desktop Applications'],
-    githubUrl: 'https://github.com/kareem-mokhtar'
-  }
+    name: 'Yo-Gi-Oh the Game',
+    description: 'A card game built from scratch in a team of two students using Java and Java Swing for the UI. This project was picked by the university as one of the best 10 projects in 2015.',
+    technologies: ['Java', 'Swing', 'Game Development'],
+    projectUrl: 'https://github.com/KEMDAK/YU-GI-OH',
+  },
 ];
