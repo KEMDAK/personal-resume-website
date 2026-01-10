@@ -23,7 +23,15 @@ interface NavigationProps {
  */
 export const Navigation: React.FC<NavigationProps> = ({ onNavigate }) => {
   // List of navigation sections
-  const sections = ['about', 'experience', 'education', 'projects', 'skills', 'contact'];
+  const sections = ['about', 'experience', 'education', 'projects', 'skills'];
+
+  const handleContactClick = () => {
+    // Scroll to the contact section at the bottom
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur border-b border-green-400/30">
@@ -44,6 +52,12 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate }) => {
               {section}
             </button>
           ))}
+          <button
+            onClick={handleContactClick}
+            className="text-xs md:text-sm text-green-400 hover:text-green-200 uppercase tracking-widest transition-colors duration-300 hover:glow flex-shrink-0"
+          >
+            contact
+          </button>
         </div>
       </div>
     </nav>

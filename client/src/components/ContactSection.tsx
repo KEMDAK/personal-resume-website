@@ -34,7 +34,7 @@ export const ContactSection: React.FC = () => {
         <div className="flex justify-center gap-4 md:gap-6 flex-wrap">
           <ContactButton
             label="Email Me"
-            href="mailto:kareem@example.com"
+            href="mailto:contact@kareem-mokhtar.com"
             icon={<Mail className="w-4 md:w-5 h-4 md:h-5" />}
           />
           <ContactButton
@@ -44,7 +44,7 @@ export const ContactSection: React.FC = () => {
           />
           <ContactButton
             label="GitHub"
-            href="https://github.com"
+            href="https://github.com/KEMDAK"
             icon={<Github className="w-4 md:w-5 h-4 md:h-5" />}
           />
         </div>

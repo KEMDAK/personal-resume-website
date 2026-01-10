@@ -40,6 +40,7 @@ export const projects: Project[] = [
     name: 'Mini Operating System',
     description: 'A simplified OS implementation with C that supports creating and deleting directories, creating, deleting, copying, moving, editing and viewing text files.',
     technologies: ['C', 'Operating Systems', 'Systems Programming'],
+    projectUrl: 'https://github.com/KEMDAK/Mini_Operating_System',
   },
   {
     name: 'Smart Trash',
@@ -55,7 +56,7 @@ export const projects: Project[] = [
     name: 'GUC Switching Assistant',
     description: 'An Android application for GUC students to make the switching tutorial process easier by automating the search process. Worked on this project with a team of two. The application was released in summer 2015.',
     technologies: ['JavaScript', 'Node.js', 'Android'],
-    projectUrl: 'https://play.google.com/store/apps/details?id=com.nmk_team.gucswitchingassistant',
+    projectUrl: 'https://github.com/KEMDAK/GUC-Switching-Assistant',
   },
   {
     name: 'IEEEGUCSB-System',
@@ -72,6 +73,7 @@ export const projects: Project[] = [
     name: 'IEEE GUC SB Elections System',
     description: 'A secure election system for conducting the yearly upper board elections of IEEE GUC student branch through their website. Implemented using the Laravel framework.',
     technologies: ['HTML', 'Laravel', 'PHP', 'Web Development'],
+    projectUrl: 'https://github.com/KEMDAK/IEEE_Elections_System',
   },
   {
     name: 'Air-Madagascar Online Booking System',
@@ -82,6 +84,7 @@ export const projects: Project[] = [
     name: 'Relational Database Management System (RDBMS)',
     description: 'A relational database management system implemented in Java. Supports creation of tables and indexes using B+ tree data structure, insertion, deletion, selection (search), and update operations.',
     technologies: ['Java', 'Databases', 'Data Structures', 'B+ Trees'],
+    projectUrl: 'https://github.com/KEMDAK/DataBase-Mini_Engine',
   },
   {
     name: 'Yo-Gi-Oh the Game',

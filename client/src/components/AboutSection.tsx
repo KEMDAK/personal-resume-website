@@ -7,7 +7,6 @@
  * - Social media links
  */
 
-import { Mail, Linkedin, Github } from 'lucide-react';
 import { AnimatedLine } from './AnimatedLine';
 
 interface AboutSectionProps {
@@ -63,31 +62,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
               isVisible={isVisible}
             />
           ))}
-
-          {/* Social media links */}
-          <div className="flex gap-4 pt-4 md:pt-6">
-            <a
-              href="mailto:kareem@example.com"
-              className="text-green-400 hover:text-green-200 hover:glow transition-colors"
-              title="Send email"
-            >
-              <Mail className="w-5 md:w-6 h-5 md:h-6" />
-            </a>
-            <a
-              href="https://linkedin.com/in/kareem-mokhtar"
-              className="text-green-400 hover:text-green-200 hover:glow transition-colors"
-              title="Visit LinkedIn profile"
-            >
-              <Linkedin className="w-5 md:w-6 h-5 md:h-6" />
-            </a>
-            <a
-              href="https://github.com"
-              className="text-green-400 hover:text-green-200 hover:glow transition-colors"
-              title="Visit GitHub profile"
-            >
-              <Github className="w-5 md:w-6 h-5 md:h-6" />
-            </a>
-          </div>
         </div>
       </div>
     </section>

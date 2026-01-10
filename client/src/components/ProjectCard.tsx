@@ -47,7 +47,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       </h3>
 
       {/* Project description */}
-      <p className="text-sm md:text-base text-green-400/80 mb-4 line-clamp-3">
+      <p className="text-sm md:text-base text-green-400/80 mb-4">
         {project.description}
       </p>
 

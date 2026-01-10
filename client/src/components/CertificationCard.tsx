@@ -10,6 +10,7 @@
  * - Fade-in animation with staggered delay
  */
 
+import { ExternalLink } from 'lucide-react';
 import { CertificationCardProps } from '@/types';
 
 /**
@@ -60,9 +61,10 @@ export const CertificationCard: React.FC<CertificationCardProps> = ({
             href={certification.issuerUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-green-300 hover:glow transition-colors"
+            className="inline-flex items-center gap-1.5 hover:text-green-300 hover:glow transition-colors"
           >
             {certification.issuer}
+            <ExternalLink size={14} className="flex-shrink-0" />
           </a>
         ) : (
           certification.issuer
