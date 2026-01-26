@@ -1,12 +1,27 @@
 import { jsxLocPlugin } from "@builder.io/vite-plugin-jsx-loc";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
-import fs from "node:fs";
 import path from "path";
 import { defineConfig } from "vite";
-import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime()];
+// Only include Manus runtime plugin in development mode
+// For production static builds, we exclude it to generate clean HTML
+const isDev = process.env.NODE_ENV !== 'production';
+
+// Base plugins for all environments
+const basePlugins = [react(), tailwindcss(), jsxLocPlugin()];
+
+// Conditionally add Manus runtime plugin only in development
+const plugins = isDev
+  ? [...basePlugins, (async () => {
+      try {
+        const { vitePluginManusRuntime } = await import("vite-plugin-manus-runtime");
+        return vitePluginManusRuntime();
+      } catch {
+        return null;
+      }
+    })()]
+  : basePlugins;
 
 export default defineConfig({
   base: './',
@@ -26,7 +41,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    strictPort: false, // Will find next available port if 3000 is busy
+    strictPort: false,
     host: true,
     allowedHosts: [
       ".manuspre.computer",

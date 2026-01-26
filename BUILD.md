@@ -8,9 +8,10 @@ This document provides detailed instructions for building the Kareem Mokhtar Int
 2. [Installation](#installation)
 3. [Development Build](#development-build)
 4. [Production Build](#production-build)
-5. [Build Output](#build-output)
-6. [Build Optimization](#build-optimization)
-7. [Troubleshooting](#troubleshooting)
+5. [Static Build for Deployment](#static-build-for-deployment)
+6. [Build Output](#build-output)
+7. [Build Optimization](#build-optimization)
+8. [Troubleshooting](#troubleshooting)
 
 ## Prerequisites
 
@@ -43,8 +44,8 @@ pnpm --version
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/KEMDAK/kareem-resume.git
-cd kareem-resume
+git clone https://github.com/KEMDAK/personal-resume-website.git
+cd personal-resume-website
 ```
 
 ### Step 2: Install Dependencies
@@ -86,7 +87,7 @@ npm run dev
 
 **Output:**
 ```
-  VITE v5.0.0  ready in 234 ms
+  VITE v7.x.x  ready in 234 ms
 
   ➜  Local:   http://localhost:3000/
   ➜  Network: http://169.254.0.21:3000/
@@ -114,13 +115,18 @@ pnpm dev -- --no-hmr
 
 ## Production Build
 
-### Build Command
+### Full Build Command (with Server)
 
 ```bash
 pnpm build
 # or
 npm run build
 ```
+
+This command builds both the client-side assets and the server-side code. It:
+1. Sets `NODE_ENV=production` to exclude development-only plugins
+2. Runs `vite build` to compile the React application
+3. Runs `esbuild` to compile the Express server
 
 ### Build Process
 
@@ -133,39 +139,60 @@ The build command performs the following steps:
 5. **Code Minification** — Reduces file sizes by removing whitespace and comments
 6. **Hash Generation** — Adds content hashes to filenames for cache busting
 
-### Build Output
+## Static Build for Deployment
 
-```
-dist/
-├── index.html                          # Main HTML file
-├── assets/
-│   ├── index-a1b2c3d4.js              # Main JavaScript bundle
-│   ├── index-e5f6g7h8.css             # Main CSS bundle
-│   ├── vendor-i9j0k1l2.js             # Vendor dependencies
-│   └── images/
-│       └── [optimized images]
-└── robots.txt                          # SEO robots file
-```
+### Static-Only Build Command
 
-### Build Time
-
-Typical build times:
-- **First build** — 30-60 seconds
-- **Incremental build** — 10-20 seconds (with cache)
-
-### Build Verification
-
-After building, verify the output:
+For deploying to static hosting platforms (GitHub Pages, Netlify, Vercel, etc.), use:
 
 ```bash
-# Check build output size
-du -sh dist/
+pnpm build:static
+# or
+npm run build:static
+```
 
-# List all generated files
-ls -lah dist/
+This command:
+1. Sets `NODE_ENV=production` to exclude the Manus runtime plugin
+2. Generates clean, self-contained static files in `dist/public/`
+3. Does NOT build the server component (not needed for static hosting)
 
-# Verify HTML is valid
-file dist/index.html
+### Output Location
+
+Static files are generated in `dist/public/`:
+
+```
+dist/public/
+├── index.html                          # Main HTML file (~1 KB)
+├── assets/
+│   ├── index-[hash].js                 # Main JavaScript bundle (~350 KB)
+│   └── index-[hash].css                # Main CSS bundle (~122 KB)
+└── images/
+    └── [any static images]
+```
+
+### Testing the Static Build
+
+```bash
+# Build the static site
+pnpm build:static
+
+# Preview the build locally
+pnpm preview
+```
+
+Then open http://localhost:4173 in your browser.
+
+### Direct File Access
+
+The static build uses relative paths (`./assets/...`) so it can be opened directly from the filesystem or served from any directory:
+
+```bash
+# Open directly in browser (may have CORS limitations)
+open dist/public/index.html
+
+# Or serve with any static file server
+npx serve dist/public
+python3 -m http.server 8000 --directory dist/public
 ```
 
 ## Build Output
@@ -174,24 +201,22 @@ file dist/index.html
 
 | File | Size | Purpose |
 |------|------|---------|
-| `index.html` | ~2-3 KB | Main HTML template |
-| `assets/index-*.js` | ~150-200 KB (gzipped) | Application JavaScript |
-| `assets/index-*.css` | ~30-50 KB (gzipped) | Tailwind CSS styles |
-| `assets/vendor-*.js` | ~100-150 KB (gzipped) | Third-party libraries |
-| `robots.txt` | ~0.5 KB | SEO robots file |
+| `index.html` | ~1 KB | Main HTML template |
+| `assets/index-*.js` | ~350 KB (~108 KB gzipped) | Application JavaScript |
+| `assets/index-*.css` | ~122 KB (~19 KB gzipped) | Tailwind CSS styles |
 
 ### Total Size
 
-- **Uncompressed** — ~800 KB - 1.2 MB
-- **Gzipped** — ~200-250 KB (typical web server compression)
-- **Brotli** — ~150-180 KB (better compression)
+- **Uncompressed** — ~473 KB
+- **Gzipped** — ~127 KB (typical web server compression)
+- **Brotli** — ~100 KB (better compression)
 
 ### Asset Hashing
 
 All assets include content hashes in filenames:
 ```
-index-a1b2c3d4.js  // Hash changes only when content changes
-index-e5f6g7h8.css // Old files can remain cached indefinitely
+index-BlPXHoEe.js  // Hash changes only when content changes
+index-8MJsgmuZ.css // Old files can remain cached indefinitely
 ```
 
 This enables **aggressive caching** — browsers cache assets until content changes.
@@ -215,16 +240,14 @@ Access in code:
 const title = import.meta.env.VITE_APP_TITLE;
 ```
 
-### Performance Metrics
+### Manus Runtime Plugin
 
-After building, check performance:
+The project includes `vite-plugin-manus-runtime` for development in Manus environments. This plugin is **automatically excluded** from production builds to ensure clean, portable static files.
 
-```bash
-# Analyze bundle size
-pnpm build --report
-
-# Check for unused CSS
-pnpm build --analyze-css
+The `vite.config.ts` conditionally loads this plugin:
+```typescript
+// Only include Manus runtime plugin in development mode
+const isDev = process.env.NODE_ENV !== 'production';
 ```
 
 ### Optimization Techniques
@@ -232,31 +255,26 @@ pnpm build --analyze-css
 The build automatically applies:
 
 1. **Tree Shaking** — Removes unused code
-   ```javascript
-   // Unused exports are removed
-   export const unused = () => {};
-   ```
-
 2. **Code Splitting** — Separates vendor code
-   ```
-   assets/vendor-*.js  // Third-party libraries
-   assets/index-*.js   // Application code
-   ```
-
 3. **CSS Purging** — Removes unused Tailwind classes
-   ```css
-   /* Only used classes are included */
-   .text-green-400 { /* included */ }
-   .text-red-500 { /* removed if unused */ }
-   ```
-
 4. **Minification** — Reduces file sizes
-   ```javascript
-   // Before: const message = "Hello World";
-   // After: const a="Hello World";
-   ```
 
 ## Troubleshooting
+
+### Build Produces Bloated HTML (300+ KB)
+
+**Problem:** The `index.html` file is very large (300+ KB) instead of ~1 KB
+
+**Cause:** The Manus runtime plugin is being included in the production build
+
+**Solution:**
+```bash
+# Ensure NODE_ENV is set to production
+NODE_ENV=production pnpm build:static
+
+# Or use the build:static script which sets this automatically
+pnpm build:static
+```
 
 ### Build Fails with TypeScript Errors
 
@@ -265,7 +283,7 @@ The build automatically applies:
 **Solution:**
 ```bash
 # Check for TypeScript errors
-pnpm tsc --noEmit
+pnpm check
 
 # Fix errors shown in output, then rebuild
 pnpm build
@@ -287,17 +305,21 @@ NODE_OPTIONS=--max-old-space-size=4096 pnpm build
 
 **Solution:**
 ```bash
-# Verify dist/index.html exists
-ls -la dist/index.html
+# Verify dist/public/index.html exists and is small (~1 KB)
+ls -la dist/public/index.html
 
-# Check for JavaScript errors
-# 1. Open dist/index.html in browser
-# 2. Open DevTools (F12)
-# 3. Check Console tab for errors
+# Check the HTML content
+head -20 dist/public/index.html
 
-# Verify all assets loaded
-# Check Network tab in DevTools
+# If HTML is bloated with scripts, rebuild with NODE_ENV=production
+NODE_ENV=production pnpm build:static
 ```
+
+### CSS Warning: "transformOrigin"
+
+**Problem:** Build shows warnings about "transformOrigin" CSS property
+
+**Solution:** This warning is harmless and can be ignored. It comes from animation keyframes in the CSS and does not affect functionality.
 
 ### Cache Issues
 
@@ -314,23 +336,6 @@ rm -rf dist node_modules/.vite
 pnpm build
 ```
 
-### Slow Build Performance
-
-**Problem:** Build takes too long
-
-**Solution:**
-```bash
-# Check what's slowing down the build
-pnpm build --profile
-
-# Analyze bundle size
-pnpm build --report
-
-# Update dependencies to latest versions
-pnpm update
-pnpm build
-```
-
 ### Module Not Found Errors
 
 **Problem:** Build fails with "Cannot find module"
@@ -341,11 +346,6 @@ pnpm build
 rm -rf node_modules pnpm-lock.yaml
 pnpm install
 pnpm build
-
-# Or with npm
-rm -rf node_modules package-lock.json
-npm install
-npm run build
 ```
 
 ### Port Already in Use
@@ -364,52 +364,11 @@ kill -9 <PID>
 pnpm dev -- --port 3001
 ```
 
-## Advanced Build Options
-
-### Custom Build Configuration
-
-Edit `vite.config.ts` to customize:
-
-```typescript
-export default defineConfig({
-  build: {
-    outDir: 'dist',           // Output directory
-    minify: 'terser',         // Minification tool
-    sourcemap: false,         // Source maps for production
-    rollupOptions: {
-      // Custom Rollup options
-    }
-  }
-});
-```
-
-### Environment-Specific Builds
-
-```bash
-# Development build
-pnpm build --mode development
-
-# Production build (default)
-pnpm build --mode production
-
-# Custom environment
-pnpm build --mode staging
-```
-
-### Analyzing Bundle
-
-```bash
-# Use rollup-plugin-visualizer
-pnpm add -D rollup-plugin-visualizer
-
-# Then check the generated visualization
-```
-
 ## CI/CD Integration
 
 ### GitHub Actions
 
-The repository includes `.github/workflows/static.yml` for automatic deployment:
+The repository includes `.github/workflows/static.yml` for automatic deployment to GitHub Pages:
 
 ```yaml
 name: Deploy static content to Pages
@@ -422,29 +381,32 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '18'
-      - run: npm install
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v2
+          node-version: '20'
+      - uses: pnpm/action-setup@v2
         with:
-          path: 'dist'
+          version: 10
+      - run: pnpm install
+      - run: pnpm build:static
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'dist/public'
 ```
 
 ### Manual Deployment
 
 ```bash
-# Build locally
-pnpm build
+# Build the static site
+pnpm build:static
 
-# Push to repository
-git add dist/
-git commit -m "Build: Update production build"
-git push origin main
-
-# GitHub Actions will automatically deploy
+# The files in dist/public/ can be deployed to any static hosting:
+# - GitHub Pages
+# - Netlify
+# - Vercel
+# - AWS S3
+# - Any web server
 ```
 
 ## Summary
@@ -453,10 +415,11 @@ git push origin main
 |------|---------|
 | Install dependencies | `pnpm install` |
 | Start dev server | `pnpm dev` |
-| Build for production | `pnpm build` |
+| Build for production (with server) | `pnpm build` |
+| Build static site only | `pnpm build:static` |
 | Preview build | `pnpm preview` |
-| Type check | `pnpm tsc --noEmit` |
-| Deploy to GitHub Pages | Push to `main` branch |
+| Type check | `pnpm check` |
+| Format code | `pnpm format` |
 
 ---
 
