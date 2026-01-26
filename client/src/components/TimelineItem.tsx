@@ -79,12 +79,12 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({
       </div>
 
       {/* Dot on timeline - positioned to overlap with the vertical line on the left */}
-      {/* Mobile: line at left-1.5 (6px) + half line width (1px) = 7px from container edge */}
-      {/* Content padding pl-8 (32px), dot width 12px, so dot left = -(32 - 7 + 6) = -31px */}
-      {/* Desktop: line at left-2 (8px) + half line width (2px) = 10px from container edge */}
-      {/* Content padding pl-12 (48px), dot width 16px, so dot left = -(48 - 10 + 8) = -46px */}
+      {/* Mobile: line center at left-1.5 (6px) + half line width (1px) = 7px from container edge */}
+      {/* Content padding pl-8 (32px), dot width 12px (half=6px), dot left = -(32 - 7 + 6) = -31px */}
+      {/* Desktop: line center at left-2 (8px) + half line width (2px) = 10px from container edge */}
+      {/* Content padding pl-12 (48px), dot width 16px (half=8px), dot left = -(48 - 10 + 8) = -46px */}
       <div 
-        className="absolute w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black -left-[26px] md:-left-[46px] -top-[19px] md:-top-[22px]"
+        className="absolute w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black -left-[31px] md:-left-[46px] -top-[19px] md:-top-[22px]"
         style={{ 
           boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00'
         }}
