@@ -24,7 +24,7 @@ const plugins = isDev
   : basePlugins;
 
 export default defineConfig({
-  base: '/personal-resume-website/',
+  base: '/',
   plugins,
   resolve: {
     alias: {
