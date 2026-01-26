@@ -141,12 +141,11 @@ export default function Home() {
                   </div>
 
                   {/* Dot on timeline - positioned to overlap with vertical line */}
+                  {/* Uses same positioning logic as TimelineItem component */}
                   <div
-                    className="absolute w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black"
+                    className="absolute w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black -left-[26px] md:-left-[46px] -top-[19px] md:-top-[22px]"
                     style={{
-                      boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00',
-                      left: '-31px',
-                      top: '-19px'
+                      boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00'
                     }}
                   />
 
