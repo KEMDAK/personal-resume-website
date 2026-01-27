@@ -26,7 +26,7 @@ interface HeroSectionProps {
  */
 export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 border-b border-green-400/20">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 border-b border-green-400/20">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Rotating square in top-left */}

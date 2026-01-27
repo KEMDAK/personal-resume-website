@@ -23,6 +23,7 @@ import { LanguagesSection } from '@/components/LanguagesSection';
 import { CertificationsSection } from '@/components/CertificationsSection';
 import { ContactSection } from '@/components/ContactSection';
 import { BackToTop } from '@/components/BackToTop';
+import { SectionIndicator } from '@/components/SectionIndicator';
 import { ProjectsSection } from '@/components/ProjectsSection';
 import { ExternalLink } from 'lucide-react';
 
@@ -221,6 +222,9 @@ export default function Home() {
 
       {/* Back to Top Button */}
       <BackToTop />
+
+      {/* Section Progress Indicator */}
+      <SectionIndicator />
     </div>
   );
 }
