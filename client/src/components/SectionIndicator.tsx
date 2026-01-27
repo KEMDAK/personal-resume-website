@@ -7,6 +7,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import { trackSectionView } from '@/utils/analytics';
 
 interface Section {
   id: string;
@@ -70,6 +71,8 @@ export const SectionIndicator: React.FC = () => {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
+    trackSectionView(sectionId);
+    
     if (sectionId === 'hero') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
@@ -85,17 +88,22 @@ export const SectionIndicator: React.FC = () => {
   };
 
   return (
-    <div
+    <nav
       className={`fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-3 transition-all duration-300 ${
         isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
       }`}
+      role="navigation"
+      aria-label="Section navigation"
+      aria-hidden={!isVisible}
     >
       {sections.map((section) => (
         <button
           key={section.id}
           onClick={() => scrollToSection(section.id)}
-          className="group relative flex items-center"
+          className="group relative flex items-center focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-black rounded-full"
           aria-label={`Go to ${section.label}`}
+          aria-current={activeSection === section.id ? 'true' : undefined}
+          tabIndex={isVisible ? 0 : -1}
         >
           {/* Tooltip label */}
           <span
@@ -118,6 +126,6 @@ export const SectionIndicator: React.FC = () => {
           />
         </button>
       ))}
-    </div>
+    </nav>
   );
 };

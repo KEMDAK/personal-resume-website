@@ -8,9 +8,12 @@
  * - Hover effects with glow
  * - Border styling
  * - Responsive sizing
+ * - Analytics tracking
+ * - Accessibility support
  */
 
 import { ContactButtonProps } from '@/types';
+import { trackContactClick } from '@/utils/analytics';
 
 /**
  * ContactButton Component
@@ -31,12 +34,29 @@ export const ContactButton: React.FC<ContactButtonProps> = ({
   href,
   icon
 }) => {
+  // Determine the contact method from the label for tracking
+  const getContactMethod = (label: string): string => {
+    const lowerLabel = label.toLowerCase();
+    if (lowerLabel.includes('email')) return 'email';
+    if (lowerLabel.includes('linkedin')) return 'linkedin';
+    if (lowerLabel.includes('github')) return 'github';
+    return lowerLabel;
+  };
+
+  const handleClick = () => {
+    trackContactClick(getContactMethod(label));
+  };
+
   return (
     <a
       href={href}
-      className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 border border-green-400 text-xs md:text-sm text-green-400 hover:bg-green-400/10 hover:text-green-200 transition-all hover:glow"
+      onClick={handleClick}
+      target={href.startsWith('mailto:') ? undefined : '_blank'}
+      rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+      className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 border border-green-400 text-xs md:text-sm text-green-400 hover:bg-green-400/10 hover:text-green-200 transition-all hover:glow focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-black"
+      aria-label={`Contact via ${label}`}
     >
-      {icon}
+      <span aria-hidden="true">{icon}</span>
       {label}
     </a>
   );

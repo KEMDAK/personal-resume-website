@@ -10,6 +10,7 @@
  */
 
 import { ChevronDown, Download } from 'lucide-react';
+import { trackCVDownload } from '@/utils/analytics';
 
 interface HeroSectionProps {
   /** Callback when explore button is clicked */
@@ -26,9 +27,9 @@ interface HeroSectionProps {
  */
 export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 border-b border-green-400/20">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 border-b border-green-400/20" aria-label="Introduction">
+      {/* Animated background elements - decorative only */}
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         {/* Rotating square in top-left */}
         <div className="absolute top-10 left-10 w-32 md:w-64 h-32 md:h-64 border-2 border-green-400/10 rotate-45 animate-pulse" />
         
@@ -38,8 +39,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
 
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
-        {/* Terminal prompt indicator */}
-        <div className="mb-8 animate-pulse">
+        {/* Terminal prompt indicator - decorative */}
+        <div className="mb-8 animate-pulse" aria-hidden="true">
           <span className="text-green-400/60">&gt; _</span>
         </div>
 
@@ -67,18 +68,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={onExplore}
-            className="inline-flex items-center gap-2 text-green-400 hover:text-green-200 uppercase text-xs md:text-sm tracking-wider transition-all duration-300 hover:glow border border-green-400/50 px-4 md:px-6 py-2 md:py-3 hover:bg-green-400/10"
+            className="inline-flex items-center gap-2 text-green-400 hover:text-green-200 uppercase text-xs md:text-sm tracking-wider transition-all duration-300 hover:glow border border-green-400/50 px-4 md:px-6 py-2 md:py-3 hover:bg-green-400/10 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-black"
+            aria-label="Explore resume - scroll to about section"
           >
-            Explore <ChevronDown className="w-4 md:w-5 h-4 md:h-5 animate-bounce" />
+            Explore <ChevronDown className="w-4 md:w-5 h-4 md:h-5 animate-bounce" aria-hidden="true" />
           </button>
           
           <a
             href="/Kareem_Mokhtar_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={trackCVDownload}
             className="inline-flex items-center gap-2 text-green-400 hover:text-green-200 uppercase text-xs md:text-sm tracking-wider transition-all duration-300 hover:glow border border-green-400/50 px-4 md:px-6 py-2 md:py-3 hover:bg-green-400/10"
+            aria-label="Download Kareem Mokhtar's resume as PDF"
           >
-            Download CV <Download className="w-4 md:w-5 h-4 md:h-5" />
+            Download CV <Download className="w-4 md:w-5 h-4 md:h-5" aria-hidden="true" />
           </a>
         </div>
       </div>

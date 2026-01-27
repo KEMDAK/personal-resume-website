@@ -44,6 +44,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
       id="about"
       ref={onRegisterRef}
       className="relative py-16 md:py-32 border-b border-green-400/20"
+      aria-label="About Kareem Mokhtar"
+      tabIndex={-1}
     >
       <div className="container mx-auto px-4 md:px-6">
         {/* Section title */}

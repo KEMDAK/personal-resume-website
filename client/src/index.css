@@ -127,6 +127,37 @@
     letter-spacing: 0.5px;
   }
   
+  /* Screen reader only utility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  /* Focus visible styles for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid #00ff00;
+    outline-offset: 2px;
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Mono', monospace;
     font-weight: 700;
@@ -419,5 +450,130 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+}
+
+/* Print Stylesheet */
+@media print {
+  /* Reset colors for print */
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  
+  /* Hide non-essential elements */
+  nav,
+  .sr-only,
+  button[aria-label="Back to top"],
+  nav[aria-label="Section navigation"],
+  .animate-pulse,
+  .animate-bounce {
+    display: none !important;
+  }
+  
+  /* Reset all colors to black for print */
+  h1, h2, h3, h4, h5, h6,
+  p, span, div, a, li {
+    color: black !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Make links visible with URL */
+  a[href^="http"]::after,
+  a[href^="mailto:"]::after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    color: #666 !important;
+  }
+  
+  /* Don't show URL for internal links */
+  a[href^="#"]::after {
+    content: none;
+  }
+  
+  /* Reset backgrounds */
+  section,
+  div {
+    background: transparent !important;
+    border-color: #ccc !important;
+  }
+  
+  /* Ensure all content is visible */
+  .opacity-0,
+  [style*="opacity: 0"] {
+    opacity: 1 !important;
+  }
+  
+  [style*="transform"] {
+    transform: none !important;
+  }
+  
+  /* Page breaks */
+  section {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+  
+  h2, h3 {
+    page-break-after: avoid;
+  }
+  
+  /* Hero section adjustments */
+  #hero {
+    min-height: auto !important;
+    padding: 2rem 0 !important;
+  }
+  
+  /* Timeline adjustments */
+  .timeline-item::before {
+    background-color: black !important;
+    border-color: white !important;
+  }
+  
+  /* Skills tags */
+  .border-green-400,
+  .border-green-400\/30 {
+    border-color: #ccc !important;
+  }
+  
+  /* Project cards */
+  .project-card {
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+  
+  /* Contact section */
+  #contact a {
+    border: 1px solid #ccc !important;
+  }
+  
+  /* Glow effects removal */
+  .glow,
+  .hover\:glow {
+    text-shadow: none !important;
+  }
+  
+  /* Container width for print */
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  
+  /* Ensure grid items display properly */
+  .grid {
+    display: block !important;
+  }
+  
+  .grid > * {
+    margin-bottom: 1rem;
   }
 }
