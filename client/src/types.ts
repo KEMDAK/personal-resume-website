@@ -50,13 +50,23 @@ export interface EducationItem {
 }
 
 /**
+ * Represents a single skill with optional URL
+ */
+export interface Skill {
+  /** Skill name */
+  name: string;
+  /** Optional URL to official website */
+  url?: string;
+}
+
+/**
  * Represents a group of related skills
  */
 export interface SkillGroup {
   /** Category name (e.g., "Backend & Systems", "Frontend & Web") */
   category: string;
-  /** Array of skill names in this category */
-  items: string[];
+  /** Array of skills in this category */
+  items: Skill[];
 }
 
 /**

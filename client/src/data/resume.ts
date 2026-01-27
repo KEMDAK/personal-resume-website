@@ -253,31 +253,78 @@ export const education: EducationItem[] = [
 
 /**
  * Skills organized by category
+ * Each skill includes an optional URL to its official website
  */
 export const skills: SkillGroup[] = [
   {
     category: 'Backend & Systems',
-    items: ['Node.js', 'ExpressJS', 'Go', 'Java', 'PHP', 'Python', 'Scala', 'Apache Spark']
+    items: [
+      { name: 'Node.js', url: 'https://nodejs.org/' },
+      { name: 'ExpressJS', url: 'https://expressjs.com/' },
+      { name: 'Go', url: 'https://go.dev/' },
+      { name: 'Java', url: 'https://www.java.com/' },
+      { name: 'PHP', url: 'https://www.php.net/' },
+      { name: 'Python', url: 'https://www.python.org/' },
+      { name: 'Scala', url: 'https://www.scala-lang.org/' },
+      { name: 'Apache Spark', url: 'https://spark.apache.org/' }
+    ]
   },
   {
     category: 'Frontend & Web',
-    items: ['React', 'AngularJS', 'Android', 'Ionic', 'HTML', 'CSS', 'Qt', 'WordPress']
+    items: [
+      { name: 'React', url: 'https://react.dev/' },
+      { name: 'AngularJS', url: 'https://angularjs.org/' },
+      { name: 'Android', url: 'https://developer.android.com/' },
+      { name: 'Ionic', url: 'https://ionicframework.com/' },
+      { name: 'HTML', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML' },
+      { name: 'CSS', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
+      { name: 'Qt', url: 'https://www.qt.io/' },
+      { name: 'WordPress', url: 'https://wordpress.org/' }
+    ]
   },
   {
     category: 'Databases & Systems',
-    items: ['MongoDB', 'MySQL', 'MariaDB', 'Apache Cassandra', 'Elastic Search', 'TimeScaleDB', 'RDBMS']
+    items: [
+      { name: 'MongoDB', url: 'https://www.mongodb.com/' },
+      { name: 'MySQL', url: 'https://www.mysql.com/' },
+      { name: 'MariaDB', url: 'https://mariadb.org/' },
+      { name: 'Apache Cassandra', url: 'https://cassandra.apache.org/' },
+      { name: 'Elastic Search', url: 'https://www.elastic.co/elasticsearch' },
+      { name: 'TimeScaleDB', url: 'https://www.timescale.com/' },
+      { name: 'RDBMS' }
+    ]
   },
   {
     category: 'DevOps & Infrastructure',
-    items: ['Kubernetes', 'RabbitMQ', 'GRPC', 'Docker', 'Kafka']
+    items: [
+      { name: 'Kubernetes', url: 'https://kubernetes.io/' },
+      { name: 'RabbitMQ', url: 'https://www.rabbitmq.com/' },
+      { name: 'gRPC', url: 'https://grpc.io/' },
+      { name: 'Docker', url: 'https://www.docker.com/' },
+      { name: 'Kafka', url: 'https://kafka.apache.org/' }
+    ]
   },
   {
     category: 'Programming Languages',
-    items: ['JavaScript', 'Java', 'C', 'C++', 'Go', 'TypeScript', 'Python', 'Scala']
+    items: [
+      { name: 'JavaScript', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
+      { name: 'Java', url: 'https://www.java.com/' },
+      { name: 'C', url: 'https://en.cppreference.com/w/c' },
+      { name: 'C++', url: 'https://isocpp.org/' },
+      { name: 'Go', url: 'https://go.dev/' },
+      { name: 'TypeScript', url: 'https://www.typescriptlang.org/' },
+      { name: 'Python', url: 'https://www.python.org/' },
+      { name: 'Scala', url: 'https://www.scala-lang.org/' }
+    ]
   },
   {
     category: 'Competitive Programming',
-    items: ['Algorithms', 'Data Structures', 'Problem Solving', 'ACM ICPC']
+    items: [
+      { name: 'Algorithms' },
+      { name: 'Data Structures' },
+      { name: 'Problem Solving' },
+      { name: 'ACM ICPC', url: 'https://icpc.global/' }
+    ]
   }
 ];
 
