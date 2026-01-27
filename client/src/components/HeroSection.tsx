@@ -74,7 +74,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
           
           <a
             href="/Kareem_Mokhtar_Resume.pdf"
-            download="Kareem_Mokhtar_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-green-400 hover:text-green-200 uppercase text-xs md:text-sm tracking-wider transition-all duration-300 hover:glow border border-green-400/50 px-4 md:px-6 py-2 md:py-3 hover:bg-green-400/10"
           >
             Download CV <Download className="w-4 md:w-5 h-4 md:h-5" />
