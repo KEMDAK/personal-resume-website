@@ -9,9 +9,9 @@
  * - External link icons for linked skills
  * - Fade-in animation with staggered delay
  */
-
 import { SkillGroupProps } from '@/types';
 import { ExternalLink } from 'lucide-react';
+import { AnimatedItem } from './AnimatedItem';
 
 /**
  * SkillGroup Component
@@ -33,17 +33,10 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({
   isVisible
 }) => {
   return (
-    <div
+    <AnimatedItem
       id={`skill-${index}`}
-      className="transition-all duration-1000"
-      style={{
-        // Fade in/out based on visibility
-        opacity: isVisible ? 1 : 0,
-        // Slide up/down
-        transform: isVisible ? 'translateY(0px)' : 'translateY(20px)',
-        // Staggered delay for sequential animation
-        transitionDelay: `${index * 0.05}s`
-      }}
+      index={index}
+      isVisible={isVisible}
     >
       {/* Category title */}
       <h3 className="text-lg md:text-xl font-bold text-green-300 mb-4 md:mb-6">
@@ -54,7 +47,7 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({
       <div className="flex flex-wrap gap-2 md:gap-3">
         {skillGroup.items.map((skill, i) => (
           skill.url ? (
-            // Clickable skill with link
+            // Clickable skill with link to official website
             <a
               key={i}
               href={skill.url}
@@ -66,7 +59,7 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({
               <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
             </a>
           ) : (
-            // Non-clickable skill (no URL)
+            // Non-clickable skill (generic concept without official website)
             <span
               key={i}
               className="px-3 md:px-4 py-1 md:py-2 border border-green-400/50 text-xs md:text-sm text-green-400/80 hover:border-green-400 hover:text-green-400 hover:bg-green-400/10 transition-all cursor-default"
@@ -76,6 +69,6 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({
           )
         ))}
       </div>
-    </div>
+    </AnimatedItem>
   );
 };

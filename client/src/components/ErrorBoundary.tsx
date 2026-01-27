@@ -1,4 +1,10 @@
-import { cn } from "@/lib/utils";
+/**
+ * ErrorBoundary Component
+ * 
+ * A React error boundary that catches JavaScript errors anywhere in the
+ * child component tree and displays a fallback UI instead of crashing.
+ * Styled to match the green terminal aesthetic of the site.
+ */
 import { AlertTriangle, RotateCcw } from "lucide-react";
 import { Component, ReactNode } from "react";
 
@@ -24,31 +30,33 @@ class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="flex items-center justify-center min-h-screen p-8 bg-background">
+        <div className="flex items-center justify-center min-h-screen p-8 bg-black">
           <div className="flex flex-col items-center w-full max-w-2xl p-8">
+            {/* Error icon */}
             <AlertTriangle
               size={48}
-              className="text-destructive mb-6 flex-shrink-0"
+              className="text-red-500 mb-6 flex-shrink-0"
             />
-
-            <h2 className="text-xl mb-4">An unexpected error occurred.</h2>
-
-            <div className="p-4 w-full rounded bg-muted overflow-auto mb-6">
-              <pre className="text-sm text-muted-foreground whitespace-break-spaces">
+            
+            {/* Error title */}
+            <h2 className="text-xl mb-4 text-green-400 font-mono">
+              &gt; RUNTIME_ERROR
+            </h2>
+            
+            {/* Error stack trace */}
+            <div className="p-4 w-full rounded border border-green-400/30 bg-black overflow-auto mb-6">
+              <pre className="text-sm text-green-400/80 whitespace-break-spaces font-mono">
                 {this.state.error?.stack}
               </pre>
             </div>
-
+            
+            {/* Reload button */}
             <button
               onClick={() => window.location.reload()}
-              className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-lg",
-                "bg-primary text-primary-foreground",
-                "hover:opacity-90 cursor-pointer"
-              )}
+              className="flex items-center gap-2 px-4 py-2 border border-green-400 text-green-400 font-mono hover:bg-green-400 hover:text-black transition-all duration-300"
             >
               <RotateCcw size={16} />
-              Reload Page
+              RELOAD_PAGE
             </button>
           </div>
         </div>

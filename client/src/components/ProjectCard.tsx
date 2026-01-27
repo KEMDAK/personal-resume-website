@@ -7,9 +7,9 @@
  * - Clickable GitHub and demo links
  * - Fade-in animation with staggered delay
  */
-
-import { Github, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { Project } from '@/data/projects';
+import { AnimatedItem } from './AnimatedItem';
 
 interface ProjectCardProps {
   /** The project data */
@@ -33,13 +33,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   isVisible
 }) => {
   return (
-    <div
-      className="border border-green-400/30 rounded-lg p-4 md:p-6 bg-black/50 backdrop-blur-sm transition-all duration-1000 hover:border-green-400 hover:bg-black/70"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0px)' : 'translateY(20px)',
-        transitionDelay: `${index * 0.05}s`
-      }}
+    <AnimatedItem
+      index={index}
+      isVisible={isVisible}
+      className="border border-green-400/30 rounded-lg p-4 md:p-6 bg-black/50 backdrop-blur-sm hover:border-green-400 hover:bg-black/70 transition-colors"
     >
       {/* Project name */}
       <h3 className="text-lg md:text-xl font-bold text-green-300 mb-2 break-words">
@@ -64,8 +61,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
 
       {/* Links */}
-      <div className="flex gap-3">
-        {project.projectUrl && (
+      {project.projectUrl && (
+        <div className="flex gap-3">
           <a
             href={project.projectUrl}
             target="_blank"
@@ -75,8 +72,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             <ExternalLink size={16} />
             View
           </a>
-        )}
-      </div>
-    </div>
+        </div>
+      )}
+    </AnimatedItem>
   );
 };

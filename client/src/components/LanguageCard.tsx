@@ -8,8 +8,8 @@
  * - Border styling with hover effects
  * - Fade-in animation with staggered delay
  */
-
 import { LanguageCardProps } from '@/types';
+import { AnimatedItem } from './AnimatedItem';
 
 /**
  * LanguageCard Component
@@ -31,17 +31,11 @@ export const LanguageCard: React.FC<LanguageCardProps> = ({
   isVisible
 }) => {
   return (
-    <div
+    <AnimatedItem
       id={`lang-${index}`}
-      className="border border-green-400/30 p-4 md:p-6 transition-all duration-1000"
-      style={{
-        // Fade in/out based on visibility
-        opacity: isVisible ? 1 : 0,
-        // Slide up/down
-        transform: isVisible ? 'translateY(0px)' : 'translateY(20px)',
-        // Staggered delay for sequential animation
-        transitionDelay: `${index * 0.05}s`
-      }}
+      index={index}
+      isVisible={isVisible}
+      className="border border-green-400/30 p-4 md:p-6"
     >
       {/* Language name */}
       <h3 className="text-base md:text-lg font-bold text-green-300 mb-2">
@@ -52,6 +46,6 @@ export const LanguageCard: React.FC<LanguageCardProps> = ({
       <p className="text-sm md:text-base text-green-400/80">
         {language.level}
       </p>
-    </div>
+    </AnimatedItem>
   );
 };

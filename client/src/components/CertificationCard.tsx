@@ -4,14 +4,14 @@
  * Displays a single certification or achievement.
  * Features:
  * - Certification name
- * - Issuing organization
+ * - Issuing organization (with optional link)
  * - Issue date
  * - Left border accent
  * - Fade-in animation with staggered delay
  */
-
 import { ExternalLink } from 'lucide-react';
 import { CertificationCardProps } from '@/types';
+import { AnimatedItem } from './AnimatedItem';
 
 /**
  * CertificationCard Component
@@ -37,17 +37,11 @@ export const CertificationCard: React.FC<CertificationCardProps> = ({
   isVisible
 }) => {
   return (
-    <div
+    <AnimatedItem
       id={`cert-${index}`}
-      className="border-l-4 border-green-400 pl-4 md:pl-6 py-3 md:py-4 transition-all duration-1000"
-      style={{
-        // Fade in/out based on visibility
-        opacity: isVisible ? 1 : 0,
-        // Slide up/down
-        transform: isVisible ? 'translateY(0px)' : 'translateY(20px)',
-        // Staggered delay for sequential animation
-        transitionDelay: `${index * 0.05}s`
-      }}
+      index={index}
+      isVisible={isVisible}
+      className="border-l-4 border-green-400 pl-4 md:pl-6 py-3 md:py-4"
     >
       {/* Certification name */}
       <h3 className="text-base md:text-lg font-bold text-green-300 mb-1">
@@ -75,6 +69,6 @@ export const CertificationCard: React.FC<CertificationCardProps> = ({
       <p className="text-xs md:text-sm text-green-400/60">
         Issued {certification.date}
       </p>
-    </div>
+    </AnimatedItem>
   );
 };
