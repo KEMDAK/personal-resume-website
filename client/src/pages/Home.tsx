@@ -14,6 +14,7 @@
  */
 
 import { useScrollVisibility } from '@/utils/scrollUtils';
+import { useKeyboardNavigation } from '@/hooks/useKeyboardNavigation';
 import { Navigation } from '@/components/Navigation';
 import { HeroSection } from '@/components/HeroSection';
 import { AboutSection } from '@/components/AboutSection';
@@ -52,6 +53,9 @@ export default function Home() {
     isSectionVisible,
     scrollToSection
   } = useScrollVisibility();
+
+  // Enable keyboard navigation (Arrow keys, J/K, Home/End, 1-7)
+  useKeyboardNavigation();
 
   return (
     <div className="min-h-screen bg-black text-green-400 font-mono overflow-x-hidden">
