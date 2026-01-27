@@ -5,11 +5,11 @@
  * - Large animated name display
  * - Professional title
  * - Brief description
- * - Call-to-action button
+ * - Call-to-action buttons (Explore and Download CV)
  * - Animated geometric background elements
  */
 
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Download } from 'lucide-react';
 
 interface HeroSectionProps {
   /** Callback when explore button is clicked */
@@ -63,13 +63,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
           Building scalable systems. Solving complex problems. Crafting elegant code.
         </p>
 
-        {/* Call-to-action button */}
-        <button
-          onClick={onExplore}
-          className="inline-flex items-center gap-2 text-green-400 hover:text-green-200 uppercase text-xs md:text-sm tracking-wider transition-all duration-300 hover:glow border border-green-400/50 px-4 md:px-6 py-2 md:py-3 hover:bg-green-400/10"
-        >
-          Explore <ChevronDown className="w-4 md:w-5 h-4 md:h-5 animate-bounce" />
-        </button>
+        {/* Call-to-action buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button
+            onClick={onExplore}
+            className="inline-flex items-center gap-2 text-green-400 hover:text-green-200 uppercase text-xs md:text-sm tracking-wider transition-all duration-300 hover:glow border border-green-400/50 px-4 md:px-6 py-2 md:py-3 hover:bg-green-400/10"
+          >
+            Explore <ChevronDown className="w-4 md:w-5 h-4 md:h-5 animate-bounce" />
+          </button>
+          
+          <a
+            href="/Kareem_Mokhtar_Resume.pdf"
+            download="Kareem_Mokhtar_Resume.pdf"
+            className="inline-flex items-center gap-2 text-green-400 hover:text-green-200 uppercase text-xs md:text-sm tracking-wider transition-all duration-300 hover:glow border border-green-400/50 px-4 md:px-6 py-2 md:py-3 hover:bg-green-400/10"
+          >
+            Download CV <Download className="w-4 md:w-5 h-4 md:h-5" />
+          </a>
+        </div>
       </div>
     </section>
   );
