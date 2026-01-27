@@ -22,6 +22,7 @@ import { SkillsSection } from '@/components/SkillsSection';
 import { LanguagesSection } from '@/components/LanguagesSection';
 import { CertificationsSection } from '@/components/CertificationsSection';
 import { ContactSection } from '@/components/ContactSection';
+import { BackToTop } from '@/components/BackToTop';
 import { ProjectsSection } from '@/components/ProjectsSection';
 import { ExternalLink } from 'lucide-react';
 
@@ -217,6 +218,9 @@ export default function Home() {
 
       {/* Contact Section */}
       <ContactSection />
+
+      {/* Back to Top Button */}
+      <BackToTop />
     </div>
   );
 }
