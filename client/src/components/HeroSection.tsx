@@ -32,8 +32,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
   
   // Select CV based on current theme
   const cvUrl = theme === 'dark' 
-    ? '/Kareem_Mokhtar_Resume_Dark.pdf' 
-    : '/Kareem_Mokhtar_Resume_Light.pdf';
+    ? '/resume_dark.pdf' 
+    : '/resume_light.pdf';
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 theme-border-subtle" style={{ borderBottomWidth: '1px' }} aria-label="Introduction">
