@@ -60,14 +60,18 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({
   return (
     <div
       id={`${sectionId}-${index}`}
-      className="relative transition-all duration-1000 pt-2 md:pt-3"
+      className="relative pt-2 md:pt-3"
       style={{
         // Container fade-in/out
         opacity: isVisible ? 1 : 0,
         // Container slide-up/down
         transform: isVisible ? 'translateY(0px)' : 'translateY(20px)',
         // Staggered delay for sequential animation (100ms per item)
-        transitionDelay: `${index * 0.1}s`
+        transitionDelay: `${index * 0.1}s`,
+        transition: `
+          opacity var(--animation-fade-in),
+          transform var(--animation-fade-in)
+        `
       }}
     >
       {/* Date badge - positioned above the item with glow effect */}

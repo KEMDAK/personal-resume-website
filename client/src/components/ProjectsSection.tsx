@@ -34,11 +34,15 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
       <div className="container">
         {/* Section title */}
         <div
-          className="mb-12 md:mb-16 transition-all duration-1000"
+          className="mb-12 md:mb-16"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0px)' : 'translateY(20px)',
-            transitionDelay: '0s'
+            transitionDelay: '0s',
+            transition: `
+              opacity var(--animation-fade-in),
+              transform var(--animation-fade-in)
+            `
           }}
         >
           <h2 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4 glow theme-section-title">

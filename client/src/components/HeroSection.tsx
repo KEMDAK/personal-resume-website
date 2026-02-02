@@ -77,8 +77,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={onExplore}
-            className="inline-flex items-center gap-2 uppercase text-xs md:text-sm tracking-wider transition-all duration-300 hover:glow border px-4 md:px-6 py-2 md:py-3 focus:outline-none focus:ring-2 focus:ring-offset-2 theme-text-primary theme-border theme-hover-bg"
-            style={{ borderColor: 'var(--border-muted)' }}
+            className="inline-flex items-center gap-2 uppercase text-xs md:text-sm tracking-wider hover:glow border px-4 md:px-6 py-2 md:py-3 focus:outline-none focus:ring-2 focus:ring-offset-2 theme-text-primary theme-border theme-hover-bg"
+            style={{ 
+              borderColor: 'var(--border-muted)',
+              transition: `
+                color var(--transition-hover),
+                background-color var(--transition-hover),
+                border-color var(--transition-theme)
+              `
+            }}
             aria-label="Explore resume - scroll to about section"
           >
             Explore <ChevronDown className="w-4 md:w-5 h-4 md:h-5 animate-bounce" aria-hidden="true" />
@@ -89,8 +96,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={trackCVDownload}
-            className="inline-flex items-center gap-2 uppercase text-xs md:text-sm tracking-wider transition-all duration-300 hover:glow border px-4 md:px-6 py-2 md:py-3 theme-text-primary theme-border theme-hover-bg"
-            style={{ borderColor: 'var(--border-muted)' }}
+            className="inline-flex items-center gap-2 uppercase text-xs md:text-sm tracking-wider hover:glow border px-4 md:px-6 py-2 md:py-3 theme-text-primary theme-border theme-hover-bg"
+            style={{ 
+              borderColor: 'var(--border-muted)',
+              transition: `
+                color var(--transition-hover),
+                background-color var(--transition-hover),
+                border-color var(--transition-theme)
+              `
+            }}
             aria-label="Download Kareem Mokhtar's resume as PDF"
           >
             Download CV <Download className="w-4 md:w-5 h-4 md:h-5" aria-hidden="true" />

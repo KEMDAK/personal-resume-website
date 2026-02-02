@@ -22,11 +22,17 @@ export const ThemeToggle: React.FC = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed bottom-6 left-6 z-50 p-3 border rounded-full shadow-lg transition-all duration-300 hover:glow focus:outline-none focus:ring-2 focus:ring-offset-2 theme-text-primary theme-hover-bg"
+      className="fixed bottom-6 left-6 z-50 p-3 border rounded-full shadow-lg hover:glow focus:outline-none focus:ring-2 focus:ring-offset-2 theme-text-primary theme-hover-bg"
       style={{
         backgroundColor: 'var(--background)',
         borderColor: 'var(--border-muted)',
         outlineColor: 'var(--primary)',
+        transition: `
+          border-color var(--transition-hover),
+          color var(--transition-hover),
+          background-color var(--transition-theme),
+          box-shadow var(--transition-hover)
+        `
       }}
       aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
       title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}

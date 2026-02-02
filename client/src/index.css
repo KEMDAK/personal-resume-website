@@ -43,6 +43,35 @@
 }
 
 /* =============================================================================
+   TRANSITION VARIABLES
+   Centralized transition durations for consistent animations across the site.
+   To adjust timing, modify these values - all related elements will update.
+   ============================================================================= */
+:root {
+  /* Theme color transitions (background, text, border when switching themes) */
+  --transition-theme: 0.4s ease;
+  
+  /* Hover effects on buttons, links, cards */
+  --transition-hover: 0.3s ease;
+  
+  /* Scroll-triggered animations (fade-in, slide-up on scroll) */
+  --transition-scroll: 0.6s ease-out;
+  
+  /* Tooltip show/hide */
+  --transition-tooltip: 0.2s ease;
+  
+  /* Scale, translate transformations */
+  --transition-transform: 0.3s ease;
+  
+  /* Section fade-in animations */
+  --animation-fade-in: 1s ease-out;
+  
+  /* Easing functions */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: ease-out;
+}
+
+/* =============================================================================
    THEME VARIABLES
    All colors are defined here. To change the theme, only modify these values.
    ============================================================================= */
@@ -241,7 +270,13 @@
   *,
   *::before,
   *::after {
-    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, fill 0.4s ease, stroke 0.4s ease;
+    transition: 
+      background-color var(--transition-theme),
+      color var(--transition-theme),
+      border-color var(--transition-theme),
+      box-shadow var(--transition-theme),
+      fill var(--transition-theme),
+      stroke var(--transition-theme);
   }
   
   body {
@@ -272,7 +307,7 @@
   
   /* Theme transition on root */
   html {
-    transition: background-color 0.4s ease;
+    transition: background-color var(--transition-theme);
   }
   
   /* Reduce motion for users who prefer it */
@@ -475,8 +510,8 @@
   }
 
   .hover-scale {
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
-                box-shadow 0.3s ease-in-out;
+    transition: transform var(--transition-hover) var(--ease-bounce), 
+                box-shadow var(--transition-hover);
   }
 
   .hover-scale:hover {
@@ -524,7 +559,10 @@
     border: 2px solid var(--border-muted);
     background-color: var(--card);
     padding: 24px;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform var(--transition-hover) var(--ease-bounce),
+                border-color var(--transition-theme),
+                box-shadow var(--transition-hover),
+                background-color var(--transition-theme);
   }
 
   .project-card:hover {
@@ -542,7 +580,7 @@
     height: 3px;
     background: linear-gradient(90deg, var(--primary), transparent);
     opacity: 0;
-    transition: opacity 0.3s ease-out;
+    transition: opacity var(--transition-hover);
   }
 
   .project-card:hover::before {
@@ -559,7 +597,10 @@
     font-weight: 700;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: color var(--transition-hover),
+                box-shadow var(--transition-hover),
+                background-color var(--transition-theme),
+                border-color var(--transition-theme);
     overflow: hidden;
   }
 
@@ -571,7 +612,7 @@
     width: 100%;
     height: 100%;
     background-color: var(--primary);
-    transition: left 0.3s ease-out;
+    transition: left var(--transition-hover);
     z-index: -1;
   }
 

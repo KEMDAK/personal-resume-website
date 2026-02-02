@@ -68,10 +68,14 @@ class ErrorBoundary extends Component<Props, State> {
             {/* Reload button */}
             <button
               onClick={() => window.location.reload()}
-              className="flex items-center gap-2 px-4 py-2 border font-mono transition-all duration-300"
+              className="flex items-center gap-2 px-4 py-2 border font-mono"
               style={{
                 borderColor: 'var(--primary)',
                 color: 'var(--primary)',
+                transition: `
+                  background-color var(--transition-hover),
+                  color var(--transition-hover)
+                `
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = 'var(--primary)';

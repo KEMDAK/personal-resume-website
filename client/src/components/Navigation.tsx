@@ -97,9 +97,10 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate }) => {
               <button
                 key={section}
                 onClick={() => handleNavClick(section)}
-                className="text-xs md:text-sm uppercase tracking-widest transition-colors duration-300 hover:glow flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded theme-text-primary"
+                className="text-xs md:text-sm uppercase tracking-widest hover:glow flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded theme-text-primary"
                 style={{ 
                   outlineColor: 'var(--primary)',
+                  transition: `color var(--transition-hover)`
                 }}
                 role="menuitem"
                 aria-label={`Navigate to ${section} section`}
@@ -109,9 +110,10 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate }) => {
             ))}
             <button
               onClick={handleContactClick}
-              className="text-xs md:text-sm uppercase tracking-widest transition-colors duration-300 hover:glow flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded theme-text-primary"
+              className="text-xs md:text-sm uppercase tracking-widest hover:glow flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded theme-text-primary"
               style={{ 
                 outlineColor: 'var(--primary)',
+                transition: `color var(--transition-hover)`
               }}
               role="menuitem"
               aria-label="Navigate to contact section"

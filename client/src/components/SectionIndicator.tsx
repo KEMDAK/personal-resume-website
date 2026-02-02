@@ -89,9 +89,15 @@ export const SectionIndicator: React.FC = () => {
 
   return (
     <nav
-      className={`fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-3 transition-all duration-300 ${
+      className={`fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-3 ${
         isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
       }`}
+      style={{
+        transition: `
+          opacity var(--transition-scroll),
+          transform var(--transition-scroll)
+        `
+      }}
       role="navigation"
       aria-label="Section navigation"
       aria-hidden={!isVisible}
@@ -110,7 +116,7 @@ export const SectionIndicator: React.FC = () => {
         >
           {/* Tooltip label */}
           <span
-            className={`absolute right-6 px-2 py-1 text-xs border rounded whitespace-nowrap transition-all duration-200 ${
+            className={`absolute right-6 px-2 py-1 text-xs border rounded whitespace-nowrap ${
               activeSection === section.id
                 ? 'opacity-100 translate-x-0'
                 : 'opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0'
@@ -119,6 +125,13 @@ export const SectionIndicator: React.FC = () => {
               backgroundColor: 'var(--background)',
               borderColor: 'var(--border-muted)',
               color: 'var(--foreground)',
+              transition: `
+                opacity var(--transition-tooltip),
+                transform var(--transition-tooltip),
+                background-color var(--transition-theme),
+                border-color var(--transition-theme),
+                color var(--transition-theme)
+              `
             }}
           >
             {section.label}
@@ -126,11 +139,16 @@ export const SectionIndicator: React.FC = () => {
 
           {/* Dot indicator */}
           <span
-            className="w-2.5 h-2.5 rounded-full border transition-all duration-300"
+            className="w-2.5 h-2.5 rounded-full border"
             style={{
               backgroundColor: activeSection === section.id ? 'var(--primary)' : 'transparent',
               borderColor: activeSection === section.id ? 'var(--primary)' : 'var(--border-muted)',
               boxShadow: activeSection === section.id ? '0 0 8px var(--glow-color)' : 'none',
+              transition: `
+                background-color var(--transition-theme),
+                border-color var(--transition-theme),
+                box-shadow var(--transition-theme)
+              `
             }}
           />
         </button>
