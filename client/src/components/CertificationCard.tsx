@@ -41,21 +41,24 @@ export const CertificationCard: React.FC<CertificationCardProps> = ({
       id={`cert-${index}`}
       index={index}
       isVisible={isVisible}
-      className="border-l-4 border-green-400 pl-4 md:pl-6 py-3 md:py-4"
+      className="border-l-4 pl-4 md:pl-6 py-3 md:py-4"
+      style={{
+        borderColor: 'var(--primary)',
+      }}
     >
       {/* Certification name */}
-      <h3 className="text-base md:text-lg font-bold text-green-300 mb-1">
+      <h3 className="text-base md:text-lg font-bold mb-1 theme-section-title">
         {certification.name}
       </h3>
 
       {/* Issuing organization */}
-      <p className="text-sm md:text-base text-green-400/80">
+      <p className="text-sm md:text-base theme-text-foreground" style={{ opacity: 0.8 }}>
         {certification.issuerUrl ? (
           <a
             href={certification.issuerUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 hover:text-green-300 hover:glow transition-colors"
+            className="inline-flex items-center gap-1.5 hover:opacity-100 hover:glow transition-colors theme-section-title"
           >
             {certification.issuer}
             <ExternalLink size={14} className="flex-shrink-0" />
@@ -66,7 +69,7 @@ export const CertificationCard: React.FC<CertificationCardProps> = ({
       </p>
 
       {/* Issue date */}
-      <p className="text-xs md:text-sm text-green-400/60">
+      <p className="text-xs md:text-sm theme-text-subtle">
         Issued {certification.date}
       </p>
     </AnimatedItem>

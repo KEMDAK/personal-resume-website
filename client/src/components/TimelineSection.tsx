@@ -45,11 +45,11 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({
     <section
       id={id}
       ref={onRegisterRef}
-      className="relative py-16 md:py-32 border-b border-green-400/20"
+      className="theme-section"
     >
       <div className="container mx-auto px-4 md:px-6">
         {/* Section title with glow effect */}
-        <h2 className="text-4xl md:text-5xl font-bold mb-12 md:mb-16 text-green-300 glow">
+        <h2 className="text-4xl md:text-5xl font-bold mb-12 md:mb-16 theme-section-title glow">
           &gt; {title}
         </h2>
 
@@ -57,7 +57,7 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({
         <div className="relative">
           {/* Vertical timeline line with gradient - animated to grow with items */}
           <div 
-            className="absolute left-1.5 md:left-2 -top-2 md:-top-2.5 bottom-0 w-0.5 md:w-1 bg-gradient-to-b from-green-400 to-green-400/30 origin-top"
+            className="absolute left-1.5 md:left-2 -top-2 md:-top-2.5 bottom-0 w-0.5 md:w-1 theme-timeline-line origin-top"
             style={{
               animation: isSectionVisible(id) ? 'growVertical 1.2s ease-out forwards' : 'none'
             }}

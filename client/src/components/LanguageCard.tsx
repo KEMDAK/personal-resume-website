@@ -35,15 +35,18 @@ export const LanguageCard: React.FC<LanguageCardProps> = ({
       id={`lang-${index}`}
       index={index}
       isVisible={isVisible}
-      className="border border-green-400/30 p-4 md:p-6"
+      className="border p-4 md:p-6"
+      style={{
+        borderColor: 'var(--border-muted)',
+      }}
     >
       {/* Language name */}
-      <h3 className="text-base md:text-lg font-bold text-green-300 mb-2">
+      <h3 className="text-base md:text-lg font-bold mb-2 theme-section-title">
         {language.name}
       </h3>
 
       {/* Proficiency level */}
-      <p className="text-sm md:text-base text-green-400/80">
+      <p className="text-sm md:text-base theme-text-foreground" style={{ opacity: 0.8 }}>
         {language.level}
       </p>
     </AnimatedItem>

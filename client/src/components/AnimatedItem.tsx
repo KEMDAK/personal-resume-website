@@ -11,7 +11,7 @@
  * - Staggered delay based on index for sequential animation
  * - Reverses when parent section becomes invisible
  */
-import { ReactNode } from 'react';
+import { ReactNode, CSSProperties } from 'react';
 
 interface AnimatedItemProps {
   /** Content to animate */
@@ -24,6 +24,8 @@ interface AnimatedItemProps {
   className?: string;
   /** Optional element ID */
   id?: string;
+  /** Optional inline styles (merged with animation styles) */
+  style?: CSSProperties;
 }
 
 /**
@@ -34,6 +36,7 @@ interface AnimatedItemProps {
  * @param isVisible - Whether the parent section is visible
  * @param className - Optional additional CSS classes
  * @param id - Optional element ID
+ * @param style - Optional inline styles
  * 
  * @example
  * <AnimatedItem index={0} isVisible={true}>
@@ -45,7 +48,8 @@ export const AnimatedItem: React.FC<AnimatedItemProps> = ({
   index,
   isVisible,
   className = '',
-  id
+  id,
+  style
 }) => {
   // Calculate staggered delay: each item delays by 50ms
   const delay = index * 0.05;
@@ -55,6 +59,8 @@ export const AnimatedItem: React.FC<AnimatedItemProps> = ({
       id={id}
       className={className}
       style={{
+        // Merge custom styles with animation styles
+        ...style,
         // Fade in/out based on visibility
         opacity: isVisible ? 1 : 0,
         // Slide up into place when visible, slide down when hidden

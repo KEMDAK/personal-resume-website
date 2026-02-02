@@ -30,7 +30,10 @@ class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="flex items-center justify-center min-h-screen p-8 bg-black">
+        <div 
+          className="flex items-center justify-center min-h-screen p-8"
+          style={{ backgroundColor: 'var(--background)' }}
+        >
           <div className="flex flex-col items-center w-full max-w-2xl p-8">
             {/* Error icon */}
             <AlertTriangle
@@ -39,13 +42,25 @@ class ErrorBoundary extends Component<Props, State> {
             />
             
             {/* Error title */}
-            <h2 className="text-xl mb-4 text-green-400 font-mono">
+            <h2 
+              className="text-xl mb-4 font-mono"
+              style={{ color: 'var(--primary)' }}
+            >
               &gt; RUNTIME_ERROR
             </h2>
             
             {/* Error stack trace */}
-            <div className="p-4 w-full rounded border border-green-400/30 bg-black overflow-auto mb-6">
-              <pre className="text-sm text-green-400/80 whitespace-break-spaces font-mono">
+            <div 
+              className="p-4 w-full rounded border overflow-auto mb-6"
+              style={{ 
+                borderColor: 'var(--border-muted)',
+                backgroundColor: 'var(--background)',
+              }}
+            >
+              <pre 
+                className="text-sm whitespace-break-spaces font-mono"
+                style={{ color: 'var(--foreground)', opacity: 0.8 }}
+              >
                 {this.state.error?.stack}
               </pre>
             </div>
@@ -53,7 +68,19 @@ class ErrorBoundary extends Component<Props, State> {
             {/* Reload button */}
             <button
               onClick={() => window.location.reload()}
-              className="flex items-center gap-2 px-4 py-2 border border-green-400 text-green-400 font-mono hover:bg-green-400 hover:text-black transition-all duration-300"
+              className="flex items-center gap-2 px-4 py-2 border font-mono transition-all duration-300"
+              style={{
+                borderColor: 'var(--primary)',
+                color: 'var(--primary)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--primary)';
+                e.currentTarget.style.color = 'var(--primary-foreground)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = 'var(--primary)';
+              }}
             >
               <RotateCcw size={16} />
               RELOAD_PAGE

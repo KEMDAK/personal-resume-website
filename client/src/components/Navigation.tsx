@@ -60,13 +60,17 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate }) => {
           e.preventDefault();
           handleSkipToContent();
         }}
-        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-green-400 focus:text-black focus:font-bold focus:outline-none focus:ring-2 focus:ring-green-200"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:font-bold focus:outline-none focus:ring-2"
+        style={{
+          backgroundColor: 'var(--primary)',
+          color: 'var(--primary-foreground)',
+        }}
       >
         Skip to main content
       </a>
 
       <nav 
-        className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur border-b border-green-400/30"
+        className="fixed top-0 left-0 right-0 z-50 theme-nav-bg"
         role="navigation"
         aria-label="Main navigation"
       >
@@ -78,19 +82,25 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate }) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="text-lg md:text-2xl font-bold text-green-400 glow flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-black"
+            className="text-lg md:text-2xl font-bold glow flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 theme-text-primary"
+            style={{ 
+              outlineColor: 'var(--primary)',
+            }}
             aria-label="Kareem Mokhtar - Go to top"
           >
             &lt;KAREEM /&gt;
           </a>
 
           {/* Navigation Links */}
-          <div className="flex gap-2 md:gap-8 flex-wrap justify-end" role="menubar">
+          <div className="flex gap-2 md:gap-8 flex-wrap justify-end items-center" role="menubar">
             {sections.map((section) => (
               <button
                 key={section}
                 onClick={() => handleNavClick(section)}
-                className="text-xs md:text-sm text-green-400 hover:text-green-200 uppercase tracking-widest transition-colors duration-300 hover:glow flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-black rounded"
+                className="text-xs md:text-sm uppercase tracking-widest transition-colors duration-300 hover:glow flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded theme-text-primary"
+                style={{ 
+                  outlineColor: 'var(--primary)',
+                }}
                 role="menuitem"
                 aria-label={`Navigate to ${section} section`}
               >
@@ -99,7 +109,10 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate }) => {
             ))}
             <button
               onClick={handleContactClick}
-              className="text-xs md:text-sm text-green-400 hover:text-green-200 uppercase tracking-widest transition-colors duration-300 hover:glow flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-black rounded"
+              className="text-xs md:text-sm uppercase tracking-widest transition-colors duration-300 hover:glow flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded theme-text-primary"
+              style={{ 
+                outlineColor: 'var(--primary)',
+              }}
               role="menuitem"
               aria-label="Navigate to contact section"
             >

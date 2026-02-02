@@ -36,15 +36,19 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     <AnimatedItem
       index={index}
       isVisible={isVisible}
-      className="border border-green-400/30 rounded-lg p-4 md:p-6 bg-black/50 backdrop-blur-sm hover:border-green-400 hover:bg-black/70 transition-colors"
+      className="border rounded-lg p-4 md:p-6 backdrop-blur-sm transition-colors"
+      style={{
+        borderColor: 'var(--border-muted)',
+        backgroundColor: 'color-mix(in srgb, var(--background) 50%, transparent)',
+      }}
     >
       {/* Project name */}
-      <h3 className="text-lg md:text-xl font-bold text-green-300 mb-2 break-words">
+      <h3 className="text-lg md:text-xl font-bold mb-2 break-words theme-section-title">
         {project.name}
       </h3>
 
       {/* Project description */}
-      <p className="text-sm md:text-base text-green-400/80 mb-4">
+      <p className="text-sm md:text-base mb-4 theme-text-foreground" style={{ opacity: 0.8 }}>
         {project.description}
       </p>
 
@@ -53,7 +57,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         {project.technologies.map((tech, i) => (
           <span
             key={i}
-            className="inline-block px-2 py-1 text-xs md:text-sm bg-green-400/10 border border-green-400/30 text-green-300 rounded"
+            className="inline-block px-2 py-1 text-xs md:text-sm border rounded theme-section-title"
+            style={{
+              backgroundColor: 'var(--secondary)',
+              borderColor: 'var(--border-muted)',
+            }}
           >
             {tech}
           </span>
@@ -67,7 +75,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             href={project.projectUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-3 py-2 text-sm border border-green-400/50 text-green-300 rounded hover:bg-green-400/10 hover:border-green-400 transition-colors"
+            className="inline-flex items-center gap-2 px-3 py-2 text-sm border rounded transition-colors theme-section-title theme-hover-bg"
+            style={{
+              borderColor: 'var(--border-muted)',
+            }}
           >
             <ExternalLink size={16} />
             View

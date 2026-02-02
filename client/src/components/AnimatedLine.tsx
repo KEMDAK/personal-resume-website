@@ -28,7 +28,8 @@ export const AnimatedLine: React.FC<AnimatedLineProps> = ({ text, index, isVisib
     <AnimatedItem
       index={index}
       isVisible={isVisible}
-      className="text-base text-green-400/80 leading-relaxed"
+      className="text-base leading-relaxed theme-text-foreground"
+      style={{ opacity: 0.8 }}
     >
       {text}
     </AnimatedItem>

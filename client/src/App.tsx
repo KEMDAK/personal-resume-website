@@ -2,7 +2,7 @@
  * App Component
  * 
  * Root application component that sets up routing and global providers.
- * Uses a dark theme by default to match the green terminal aesthetic.
+ * Theme defaults to system preference (light or dark based on OS settings).
  */
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
@@ -34,12 +34,12 @@ function Router() {
  * 
  * Sets up the application with:
  * - ErrorBoundary for graceful error handling
- * - ThemeProvider with dark theme (matching terminal aesthetic)
+ * - ThemeProvider (defaults to system preference)
  */
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="dark">
+      <ThemeProvider>
         <Router />
       </ThemeProvider>
     </ErrorBoundary>

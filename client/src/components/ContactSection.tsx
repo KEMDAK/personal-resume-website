@@ -21,12 +21,12 @@ export const ContactSection: React.FC = () => {
     <section id="contact" className="relative py-16 md:py-32">
       <div className="container mx-auto px-4 md:px-6 text-center">
         {/* Section title */}
-        <h2 className="text-4xl md:text-5xl font-bold mb-6 md:mb-8 text-green-300 glow">
+        <h2 className="text-4xl md:text-5xl font-bold mb-6 md:mb-8 theme-section-title glow">
           &gt; GET IN TOUCH
         </h2>
 
         {/* CTA description */}
-        <p className="text-base md:text-lg text-green-400/80 mb-8 md:mb-12 max-w-2xl mx-auto">
+        <p className="text-base md:text-lg mb-8 md:mb-12 max-w-2xl mx-auto theme-text-foreground" style={{ opacity: 0.8 }}>
           Interested in collaborating or have a project in mind? Let's connect and build something amazing together.
         </p>
 

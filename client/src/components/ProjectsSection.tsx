@@ -41,10 +41,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             transitionDelay: '0s'
           }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-green-300 mb-3 md:mb-4 glow">
+          <h2 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4 glow theme-section-title">
             PROJECTS
           </h2>
-          <div className="w-16 h-1 bg-green-400"></div>
+          <div className="w-16 h-1" style={{ backgroundColor: 'var(--primary)' }}></div>
         </div>
 
         {/* Projects grid */}

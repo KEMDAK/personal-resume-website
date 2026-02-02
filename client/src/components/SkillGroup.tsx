@@ -39,7 +39,7 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({
       isVisible={isVisible}
     >
       {/* Category title */}
-      <h3 className="text-lg md:text-xl font-bold text-green-300 mb-4 md:mb-6">
+      <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 theme-section-title">
         {skillGroup.category}
       </h3>
 
@@ -53,7 +53,18 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({
               href={skill.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 px-3 md:px-4 py-1 md:py-2 border border-green-400/50 text-xs md:text-sm text-green-400/80 hover:border-green-400 hover:text-green-400 hover:bg-green-400/10 transition-all cursor-pointer group"
+              className="inline-flex items-center gap-1 px-3 md:px-4 py-1 md:py-2 border text-xs md:text-sm transition-all cursor-pointer group theme-border theme-text-subtle hover:theme-text-primary"
+              style={{
+                borderColor: 'var(--border-muted)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'var(--primary)';
+                e.currentTarget.style.backgroundColor = 'var(--secondary)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'var(--border-muted)';
+                e.currentTarget.style.backgroundColor = 'transparent';
+              }}
             >
               {skill.name}
               <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
@@ -62,7 +73,20 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({
             // Non-clickable skill (generic concept without official website)
             <span
               key={i}
-              className="px-3 md:px-4 py-1 md:py-2 border border-green-400/50 text-xs md:text-sm text-green-400/80 hover:border-green-400 hover:text-green-400 hover:bg-green-400/10 transition-all cursor-default"
+              className="px-3 md:px-4 py-1 md:py-2 border text-xs md:text-sm transition-all cursor-default theme-text-subtle"
+              style={{
+                borderColor: 'var(--border-muted)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'var(--primary)';
+                e.currentTarget.style.backgroundColor = 'var(--secondary)';
+                e.currentTarget.style.color = 'var(--primary)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'var(--border-muted)';
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = 'var(--muted-foreground)';
+              }}
             >
               {skill.name}
             </span>

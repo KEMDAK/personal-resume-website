@@ -25,6 +25,7 @@ import { CertificationsSection } from '@/components/CertificationsSection';
 import { ContactSection } from '@/components/ContactSection';
 import { BackToTop } from '@/components/BackToTop';
 import { SectionIndicator } from '@/components/SectionIndicator';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { ProjectsSection } from '@/components/ProjectsSection';
 import { ExternalLink } from 'lucide-react';
 
@@ -58,7 +59,7 @@ export default function Home() {
   useKeyboardNavigation();
 
   return (
-    <div className="min-h-screen bg-black text-green-400 font-mono overflow-x-hidden">
+    <div className="theme-page">
       {/* Fixed Navigation Bar */}
       <Navigation onNavigate={scrollToSection} />
 
@@ -112,18 +113,18 @@ export default function Home() {
         ref={(el) => {
           if (el) sectionRefs.current['education'] = el;
         }}
-        className="relative py-16 md:py-32 border-b border-green-400/20"
+        className="theme-section"
       >
         <div className="container mx-auto px-4 md:px-6">
           {/* Section title */}
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 md:mb-16 text-green-300 glow">
+          <h2 className="text-4xl md:text-5xl font-bold mb-12 md:mb-16 theme-section-title glow">
             &gt; EDUCATION
           </h2>
 
           {/* Timeline container */}
           <div className="relative">
             {/* Vertical timeline line with gradient - extended to top to middle of first dot */}
-            <div className="absolute left-1.5 md:left-2 -top-2 md:-top-2.5 bottom-0 w-0.5 md:w-1 bg-gradient-to-b from-green-400 to-green-400/30" />
+            <div className="absolute left-1.5 md:left-2 -top-2 md:-top-2.5 bottom-0 w-0.5 md:w-1 theme-timeline-line" />
 
             {/* Education items */}
             <div className="space-y-12 md:space-y-16 pl-8 md:pl-12">
@@ -139,34 +140,25 @@ export default function Home() {
                   }}
                 >
                   {/* Date badge with glow */}
-                  <div
-                    className="absolute -top-5 md:-top-6 left-0 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono"
-                    style={{ textShadow: '0 0 10px #00ff00, 0 0 20px #00ff00' }}
-                  >
+                  <div className="absolute -top-5 md:-top-6 left-0 text-xs md:text-sm whitespace-nowrap font-mono theme-date-badge">
                     {edu.startDate} — {edu.endDate}
                   </div>
 
                   {/* Dot on timeline - positioned to overlap with vertical line */}
-                  {/* Uses same positioning logic as TimelineItem component */}
-                  <div
-                    className="absolute w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black -left-[31px] md:-left-[46px] -top-[19px] md:-top-[22px]"
-                    style={{
-                      boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00'
-                    }}
-                  />
+                  <div className="absolute w-3 md:w-4 h-3 md:h-4 rounded-full -left-[31px] md:-left-[46px] -top-[19px] md:-top-[22px] theme-timeline-dot" />
 
                   {/* Content */}
                   <div>
-                    <h3 className="text-lg md:text-2xl font-bold text-green-300 mb-1 md:mb-2 break-words">
+                    <h3 className="text-lg md:text-2xl font-bold mb-1 md:mb-2 break-words theme-section-title">
                       {edu.degree}
                     </h3>
-                    <p className="text-base md:text-lg text-green-400 mb-1 md:mb-2 break-words">
+                    <p className="text-base md:text-lg mb-1 md:mb-2 break-words theme-text-primary">
                       {edu.schoolUrl ? (
                         <a 
                           href={edu.schoolUrl} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 hover:text-green-300 hover:glow transition-colors"
+                          className="inline-flex items-center gap-1.5 hover:opacity-80 hover:glow transition-colors"
                         >
                           {edu.school}
                           <ExternalLink size={14} className="flex-shrink-0" />
@@ -175,7 +167,7 @@ export default function Home() {
                         edu.school
                       )}
                     </p>
-                    <p className="text-xs md:text-sm text-green-400/80 mb-2 md:mb-3">
+                    <p className="text-xs md:text-sm mb-2 md:mb-3 theme-text-subtle">
                       {edu.field}
                     </p>
                   </div>
@@ -192,7 +184,7 @@ export default function Home() {
         ref={(el) => {
           if (el) sectionRefs.current['projects'] = el;
         }}
-        className="border-b border-green-400/20"
+        className="theme-section"
       >
         <ProjectsSection
           projects={projects}
@@ -226,6 +218,9 @@ export default function Home() {
 
       {/* Back to Top Button */}
       <BackToTop />
+
+      {/* Theme Toggle Button (floating, bottom left) */}
+      <ThemeToggle />
 
       {/* Section Progress Indicator */}
       <SectionIndicator />

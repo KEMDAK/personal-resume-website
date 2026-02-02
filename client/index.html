@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 
   <head>
     <meta charset="UTF-8" />
@@ -192,9 +192,17 @@
   </head>
 
   <body>
+    <!-- Prevent flash of wrong theme by setting class before React hydrates -->
+    <script>
+      (function() {
+        // Check system preference and apply theme immediately
+        var theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.classList.remove('light', 'dark');
+        document.documentElement.classList.add(theme);
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-
   </body>
 
 </html>

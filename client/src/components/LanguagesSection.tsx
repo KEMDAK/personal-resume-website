@@ -35,10 +35,10 @@ export const LanguagesSection: React.FC<LanguagesSectionProps> = ({
   isVisible
 }) => {
   return (
-    <section className="relative py-16 md:py-32 border-b border-green-400/20">
+    <section className="theme-section">
       <div className="container mx-auto px-4 md:px-6">
         {/* Section title */}
-        <h2 className="text-4xl md:text-5xl font-bold mb-12 md:mb-16 text-green-300 glow">
+        <h2 className="text-4xl md:text-5xl font-bold mb-12 md:mb-16 theme-section-title glow">
           &gt; LANGUAGES
         </h2>
 

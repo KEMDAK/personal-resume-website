@@ -53,7 +53,11 @@ export const ContactButton: React.FC<ContactButtonProps> = ({
       onClick={handleClick}
       target={href.startsWith('mailto:') ? undefined : '_blank'}
       rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-      className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 border border-green-400 text-xs md:text-sm text-green-400 hover:bg-green-400/10 hover:text-green-200 transition-all hover:glow focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-black"
+      className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 border text-xs md:text-sm transition-all hover:glow focus:outline-none focus:ring-2 focus:ring-offset-2 theme-text-primary theme-hover-bg"
+      style={{
+        borderColor: 'var(--primary)',
+        outlineColor: 'var(--primary)',
+      }}
       aria-label={`Contact via ${label}`}
     >
       <span aria-hidden="true">{icon}</span>

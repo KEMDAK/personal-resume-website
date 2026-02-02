@@ -71,10 +71,7 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({
       }}
     >
       {/* Date badge - positioned above the item with glow effect */}
-      <div 
-        className="absolute -top-5 md:-top-6 left-0 text-xs md:text-sm text-green-300 whitespace-nowrap font-mono"
-        style={{ textShadow: '0 0 10px #00ff00, 0 0 20px #00ff00' }}
-      >
+      <div className="absolute -top-5 md:-top-6 left-0 text-xs md:text-sm whitespace-nowrap font-mono theme-date-badge">
         {dateDisplay}
       </div>
 
@@ -83,28 +80,23 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({
       {/* Content padding pl-8 (32px), dot width 12px (half=6px), dot left = -(32 - 7 + 6) = -31px */}
       {/* Desktop: line center at left-2 (8px) + half line width (2px) = 10px from container edge */}
       {/* Content padding pl-12 (48px), dot width 16px (half=8px), dot left = -(48 - 10 + 8) = -46px */}
-      <div 
-        className="absolute w-3 md:w-4 h-3 md:h-4 rounded-full bg-green-400 border-2 border-black -left-[31px] md:-left-[46px] -top-[19px] md:-top-[22px]"
-        style={{ 
-          boxShadow: '0 0 15px #00ff00, 0 0 30px #00ff00, inset 0 0 10px #00ff00'
-        }}
-      />
+      <div className="absolute w-3 md:w-4 h-3 md:h-4 rounded-full -left-[31px] md:-left-[46px] -top-[19px] md:-top-[22px] theme-timeline-dot" />
 
       {/* Content section */}
       <div>
         {/* Job title / degree name */}
-        <h3 className="text-lg md:text-2xl font-bold text-green-300 mb-1 md:mb-2 break-words">
+        <h3 className="text-lg md:text-2xl font-bold mb-1 md:mb-2 break-words theme-section-title">
           {item.title}
         </h3>
 
         {/* Company / school name - clickable if URL provided */}
-        <p className="text-base md:text-lg text-green-400 mb-1 md:mb-2 break-words">
+        <p className="text-base md:text-lg mb-1 md:mb-2 break-words theme-text-primary">
           {item.companyUrl ? (
             <a 
               href={item.companyUrl} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 hover:text-green-300 hover:glow transition-colors"
+              className="inline-flex items-center gap-1.5 hover:opacity-80 hover:glow transition-colors"
             >
               {item.company}
               <ExternalLink size={14} className="flex-shrink-0" />
@@ -116,14 +108,14 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({
 
         {/* Duration (e.g., "1 yr 7 mos") */}
         {duration && (
-          <p className="text-xs md:text-sm text-green-400/60 mb-2 md:mb-3">
+          <p className="text-xs md:text-sm mb-2 md:mb-3 theme-text-subtle">
             {duration}
           </p>
         )}
 
         {/* Location (if provided) */}
         {item.location && (
-          <p className="text-xs md:text-sm text-green-400/60 mb-3 md:mb-4">
+          <p className="text-xs md:text-sm mb-3 md:mb-4 theme-text-subtle">
             {item.location}
           </p>
         )}

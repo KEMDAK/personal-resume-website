@@ -100,29 +100,38 @@ export const SectionIndicator: React.FC = () => {
         <button
           key={section.id}
           onClick={() => scrollToSection(section.id)}
-          className="group relative flex items-center focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-black rounded-full"
+          className="group relative flex items-center focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full"
+          style={{
+            outlineColor: 'var(--primary)',
+          }}
           aria-label={`Go to ${section.label}`}
           aria-current={activeSection === section.id ? 'true' : undefined}
           tabIndex={isVisible ? 0 : -1}
         >
           {/* Tooltip label */}
           <span
-            className={`absolute right-6 px-2 py-1 text-xs bg-black border border-green-400/30 rounded whitespace-nowrap transition-all duration-200 ${
+            className={`absolute right-6 px-2 py-1 text-xs border rounded whitespace-nowrap transition-all duration-200 ${
               activeSection === section.id
                 ? 'opacity-100 translate-x-0'
                 : 'opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0'
             }`}
+            style={{
+              backgroundColor: 'var(--background)',
+              borderColor: 'var(--border-muted)',
+              color: 'var(--foreground)',
+            }}
           >
             {section.label}
           </span>
 
           {/* Dot indicator */}
           <span
-            className={`w-2.5 h-2.5 rounded-full border transition-all duration-300 ${
-              activeSection === section.id
-                ? 'bg-green-400 border-green-400 shadow-[0_0_8px_rgba(0,255,0,0.6)]'
-                : 'bg-transparent border-green-400/40 hover:border-green-400 hover:bg-green-400/20'
-            }`}
+            className="w-2.5 h-2.5 rounded-full border transition-all duration-300"
+            style={{
+              backgroundColor: activeSection === section.id ? 'var(--primary)' : 'transparent',
+              borderColor: activeSection === section.id ? 'var(--primary)' : 'var(--border-muted)',
+              boxShadow: activeSection === section.id ? '0 0 8px var(--glow-color)' : 'none',
+            }}
           />
         </button>
       ))}
