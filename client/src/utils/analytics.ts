@@ -28,11 +28,13 @@ export function trackEvent(
 
 /**
  * Track when a user downloads the CV
+ * @param theme - The current theme (dark/light) to track which CV version
  */
-export function trackCVDownload(): void {
+export function trackCVDownload(theme?: string): void {
   trackEvent('download_cv', {
     content_type: 'pdf',
-    item_id: 'kareem_mokhtar_resume'
+    item_id: 'kareem_mokhtar_resume',
+    cv_theme: theme || 'unknown'
   });
 }
 
@@ -51,10 +53,12 @@ export function trackSkillClick(skillName: string, category: string): void {
 /**
  * Track when a user clicks on a project link
  * @param projectName - The name of the project clicked
+ * @param linkType - The type of link (e.g., 'github', 'demo', 'view')
  */
-export function trackProjectClick(projectName: string): void {
+export function trackProjectClick(projectName: string, linkType?: string): void {
   trackEvent('click_project', {
-    project_name: projectName
+    project_name: projectName,
+    link_type: linkType || 'view'
   });
 }
 
@@ -81,9 +85,83 @@ export function trackSectionView(sectionName: string): void {
 /**
  * Track when a user uses keyboard navigation
  * @param key - The key pressed
+ * @param action - The action performed (e.g., 'navigate_section', 'toggle_theme')
  */
-export function trackKeyboardNavigation(key: string): void {
+export function trackKeyboardNavigation(key: string, action?: string): void {
   trackEvent('keyboard_navigation', {
-    key_pressed: key
+    key_pressed: key,
+    action: action || 'navigation'
+  });
+}
+
+/**
+ * Track when a user toggles the theme
+ * @param newTheme - The theme switched to (e.g., 'dark', 'light', 'system')
+ * @param previousTheme - The theme switched from
+ */
+export function trackThemeToggle(newTheme: string, previousTheme?: string): void {
+  trackEvent('theme_toggle', {
+    new_theme: newTheme,
+    previous_theme: previousTheme || 'unknown'
+  });
+}
+
+/**
+ * Track when a user clicks an external link
+ * @param linkUrl - The URL of the external link
+ * @param linkText - The text/label of the link
+ * @param context - Where the link was clicked (e.g., 'timeline', 'footer', 'skills')
+ */
+export function trackExternalLinkClick(linkUrl: string, linkText: string, context: string): void {
+  trackEvent('click_external_link', {
+    link_url: linkUrl,
+    link_text: linkText,
+    link_context: context
+  });
+}
+
+/**
+ * Track when a user clicks on a certification link
+ * @param certificationName - The name of the certification
+ * @param provider - The certification provider (e.g., 'Udacity', 'ACM ICPC')
+ */
+export function trackCertificationClick(certificationName: string, provider: string): void {
+  trackEvent('click_certification', {
+    certification_name: certificationName,
+    certification_provider: provider
+  });
+}
+
+/**
+ * Track contact form interactions
+ * @param action - The form action (e.g., 'submit_success', 'submit_error', 'field_focus')
+ * @param fieldName - Optional field name for field-specific events
+ */
+export function trackContactForm(action: string, fieldName?: string): void {
+  trackEvent('contact_form', {
+    form_action: action,
+    field_name: fieldName || 'none'
+  });
+}
+
+/**
+ * Track scroll depth milestones
+ * @param depth - The scroll depth percentage (25, 50, 75, 100)
+ */
+export function trackScrollDepth(depth: number): void {
+  trackEvent('scroll_depth', {
+    depth_percentage: depth
+  });
+}
+
+/**
+ * Track timeline/experience item expansion
+ * @param itemTitle - The title of the timeline item
+ * @param company - The company name
+ */
+export function trackTimelineExpand(itemTitle: string, company: string): void {
+  trackEvent('timeline_expand', {
+    item_title: itemTitle,
+    company: company
   });
 }

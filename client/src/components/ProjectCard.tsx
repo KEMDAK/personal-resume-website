@@ -6,10 +6,12 @@
  * - Technology tags
  * - Clickable GitHub and demo links
  * - Fade-in animation with staggered delay
+ * - Analytics tracking for project link clicks
  */
 import { ExternalLink } from 'lucide-react';
 import { Project } from '@/data/projects';
 import { AnimatedItem } from './AnimatedItem';
+import { trackProjectClick } from '@/utils/analytics';
 
 interface ProjectCardProps {
   /** The project data */
@@ -32,6 +34,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   index,
   isVisible
 }) => {
+  const handleProjectClick = () => {
+    trackProjectClick(project.name, 'view');
+  };
+
   return (
     <AnimatedItem
       index={index}
@@ -79,6 +85,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             style={{
               borderColor: 'var(--border-muted)',
             }}
+            onClick={handleProjectClick}
           >
             <ExternalLink size={16} />
             View

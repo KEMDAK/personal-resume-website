@@ -8,6 +8,7 @@
  * - Call-to-action buttons (Explore and Download CV)
  * - Animated geometric background elements
  * - Theme-aware CV download (light/dark versions)
+ * - Analytics tracking for CV downloads with theme info
  */
 
 import { ChevronDown, Download } from 'lucide-react';
@@ -34,6 +35,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
   const cvUrl = theme === 'dark' 
     ? '/resume_dark.pdf' 
     : '/resume_light.pdf';
+
+  const handleCVDownload = () => {
+    trackCVDownload(theme);
+  };
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 theme-border-subtle" style={{ borderBottomWidth: '1px' }} aria-label="Introduction">
@@ -95,7 +100,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
             href={cvUrl}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={trackCVDownload}
+            onClick={handleCVDownload}
             className="inline-flex items-center gap-2 uppercase text-xs md:text-sm tracking-wider hover:glow border px-4 md:px-6 py-2 md:py-3 theme-text-primary theme-border theme-hover-bg"
             style={{ 
               borderColor: 'var(--border-muted)',

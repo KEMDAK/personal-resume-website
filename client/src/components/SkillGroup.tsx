@@ -8,10 +8,12 @@
  * - Clickable links to official websites
  * - External link icons for linked skills
  * - Fade-in animation with staggered delay
+ * - Analytics tracking for skill clicks
  */
 import { SkillGroupProps } from '@/types';
 import { ExternalLink } from 'lucide-react';
 import { AnimatedItem } from './AnimatedItem';
+import { trackSkillClick } from '@/utils/analytics';
 
 /**
  * SkillGroup Component
@@ -32,6 +34,10 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({
   index,
   isVisible
 }) => {
+  const handleSkillClick = (skillName: string) => {
+    trackSkillClick(skillName, skillGroup.category);
+  };
+
   return (
     <AnimatedItem
       id={`skill-${index}`}
@@ -57,6 +63,7 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({
               style={{
                 borderColor: 'var(--border-muted)',
               }}
+              onClick={() => handleSkillClick(skill.name)}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = 'var(--primary)';
                 e.currentTarget.style.backgroundColor = 'var(--secondary)';

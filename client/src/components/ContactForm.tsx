@@ -11,7 +11,7 @@
 
 import { useState, FormEvent } from 'react';
 import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
-import { trackEvent } from '@/utils/analytics';
+import { trackContactForm } from '@/utils/analytics';
 
 interface FormState {
   status: 'idle' | 'loading' | 'success' | 'error';
@@ -53,7 +53,7 @@ export const ContactForm: React.FC = () => {
         form.reset();
         
         // Track successful form submission
-        trackEvent('contact_form_submit', 'contact', 'form_success');
+        trackContactForm('submit_success');
       } else {
         throw new Error(data.message || 'Something went wrong');
       }
@@ -64,7 +64,7 @@ export const ContactForm: React.FC = () => {
       });
       
       // Track form error
-      trackEvent('contact_form_error', 'contact', 'form_error');
+      trackContactForm('submit_error');
     }
   };
 

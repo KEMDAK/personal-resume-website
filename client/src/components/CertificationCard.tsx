@@ -8,10 +8,12 @@
  * - Issue date
  * - Left border accent
  * - Fade-in animation with staggered delay
+ * - Analytics tracking for certification link clicks
  */
 import { ExternalLink } from 'lucide-react';
 import { CertificationCardProps } from '@/types';
 import { AnimatedItem } from './AnimatedItem';
+import { trackCertificationClick } from '@/utils/analytics';
 
 /**
  * CertificationCard Component
@@ -36,6 +38,10 @@ export const CertificationCard: React.FC<CertificationCardProps> = ({
   index,
   isVisible
 }) => {
+  const handleCertificationClick = () => {
+    trackCertificationClick(certification.name, certification.issuer);
+  };
+
   return (
     <AnimatedItem
       id={`cert-${index}`}
@@ -59,6 +65,7 @@ export const CertificationCard: React.FC<CertificationCardProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 hover:opacity-100 hover:glow transition-colors theme-section-title"
+            onClick={handleCertificationClick}
           >
             {certification.issuer}
             <ExternalLink size={14} className="flex-shrink-0" />

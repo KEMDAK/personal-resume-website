@@ -5,10 +5,12 @@
  * Positioned on the left bottom corner, similar to BackToTop button.
  * Shows a sun icon in dark mode (click to switch to light)
  * Shows a moon icon in light mode (click to switch to dark)
+ * Tracks theme changes in Google Analytics
  */
 
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
+import { trackThemeToggle } from '@/utils/analytics';
 
 /**
  * ThemeToggle Component
@@ -19,9 +21,20 @@ import { useTheme } from '@/contexts/ThemeContext';
 export const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
+  const handleToggle = () => {
+    const previousTheme = theme;
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    
+    // Track the theme change
+    trackThemeToggle(newTheme, previousTheme);
+    
+    // Perform the toggle
+    toggleTheme();
+  };
+
   return (
     <button
-      onClick={toggleTheme}
+      onClick={handleToggle}
       className="fixed bottom-6 left-6 z-50 p-3 border rounded-full shadow-lg hover:glow focus:outline-none focus:ring-2 focus:ring-offset-2 theme-text-primary theme-hover-bg"
       style={{
         backgroundColor: 'var(--background)',

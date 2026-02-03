@@ -7,6 +7,7 @@
  * - Glowing dot on the timeline
  * - Title, company/school, duration, location
  * - Animated description lines
+ * - Analytics tracking for external link clicks
  * 
  * Animation:
  * - Container fades in and slides up
@@ -18,6 +19,7 @@ import { TimelineItem as TimelineItemType } from '@/types';
 import { AnimatedLine } from './AnimatedLine';
 import { calculateDuration } from '@/utils/dateUtils';
 import { ExternalLink } from 'lucide-react';
+import { trackExternalLinkClick } from '@/utils/analytics';
 
 interface TimelineItemProps {
   /** The timeline item data */
@@ -56,6 +58,12 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({
   const dateDisplay = item.isCurrent 
     ? `${item.startDate} — Present`
     : `${item.startDate} — ${item.endDate}`;
+
+  const handleCompanyClick = () => {
+    if (item.companyUrl) {
+      trackExternalLinkClick(item.companyUrl, item.company, sectionId);
+    }
+  };
 
   return (
     <div
@@ -101,6 +109,7 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 hover:opacity-80 hover:glow transition-colors"
+              onClick={handleCompanyClick}
             >
               {item.company}
               <ExternalLink size={14} className="flex-shrink-0" />
