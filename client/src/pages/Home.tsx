@@ -11,23 +11,27 @@
  * - Contact section
  * 
  * Manages scroll-based visibility for animations across all sections.
+ * Uses React.lazy for code splitting and lazy loading sections below the fold.
  */
 
+import { Suspense, lazy } from 'react';
 import { useScrollVisibility } from '@/utils/scrollUtils';
 import { useKeyboardNavigation } from '@/hooks/useKeyboardNavigation';
 import { Navigation } from '@/components/Navigation';
 import { HeroSection } from '@/components/HeroSection';
 import { AboutSection } from '@/components/AboutSection';
-import { TimelineSection } from '@/components/TimelineSection';
-import { SkillsSection } from '@/components/SkillsSection';
-import { LanguagesSection } from '@/components/LanguagesSection';
-import { CertificationsSection } from '@/components/CertificationsSection';
-import { ContactSection } from '@/components/ContactSection';
 import { BackToTop } from '@/components/BackToTop';
 import { SectionIndicator } from '@/components/SectionIndicator';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { ProjectsSection } from '@/components/ProjectsSection';
 import { ExternalLink } from 'lucide-react';
+
+// Lazy load sections below the fold for better initial load performance
+const TimelineSection = lazy(() => import('@/components/TimelineSection').then(m => ({ default: m.TimelineSection })));
+const ProjectsSection = lazy(() => import('@/components/ProjectsSection').then(m => ({ default: m.ProjectsSection })));
+const SkillsSection = lazy(() => import('@/components/SkillsSection').then(m => ({ default: m.SkillsSection })));
+const LanguagesSection = lazy(() => import('@/components/LanguagesSection').then(m => ({ default: m.LanguagesSection })));
+const CertificationsSection = lazy(() => import('@/components/CertificationsSection').then(m => ({ default: m.CertificationsSection })));
+const ContactSection = lazy(() => import('@/components/ContactSection').then(m => ({ default: m.ContactSection })));
 
 // Import resume data
 import {
@@ -40,6 +44,17 @@ import {
   certifications
 } from '@/data/resume';
 import { projects } from '@/data/projects';
+
+/**
+ * Loading fallback component for lazy-loaded sections
+ */
+function SectionLoader() {
+  return (
+    <div className="py-16 md:py-24 flex items-center justify-center">
+      <div className="theme-text-primary animate-pulse">Loading...</div>
+    </div>
+  );
+}
 
 /**
  * Home Component
@@ -63,10 +78,10 @@ export default function Home() {
       {/* Fixed Navigation Bar */}
       <Navigation onNavigate={scrollToSection} />
 
-      {/* Hero Section */}
+      {/* Hero Section - loaded immediately (above the fold) */}
       <HeroSection onExplore={() => scrollToSection('about')} />
 
-      {/* About Section */}
+      {/* About Section - loaded immediately (above the fold) */}
       <AboutSection
         isVisible={isSectionVisible('about')}
         onRegisterRef={(el) => {
@@ -74,38 +89,41 @@ export default function Home() {
         }}
       />
 
-      {/* Professional Experience Timeline */}
-      <TimelineSection
-        items={professionalExperience}
-        title="PROFESSIONAL EXPERIENCE"
-        id="experience"
-        onRegisterRef={(el) => {
-          if (el) sectionRefs.current['experience'] = el;
-        }}
-        isSectionVisible={isSectionVisible}
-      />
+      {/* Lazy-loaded sections below the fold */}
+      <Suspense fallback={<SectionLoader />}>
+        {/* Professional Experience Timeline */}
+        <TimelineSection
+          items={professionalExperience}
+          title="PROFESSIONAL EXPERIENCE"
+          id="experience"
+          onRegisterRef={(el) => {
+            if (el) sectionRefs.current['experience'] = el;
+          }}
+          isSectionVisible={isSectionVisible}
+        />
 
-      {/* Volunteer Experience Timeline */}
-      <TimelineSection
-        items={volunteerExperience}
-        title="VOLUNTEER EXPERIENCE"
-        id="volunteer"
-        onRegisterRef={(el) => {
-          if (el) sectionRefs.current['volunteer'] = el;
-        }}
-        isSectionVisible={isSectionVisible}
-      />
+        {/* Volunteer Experience Timeline */}
+        <TimelineSection
+          items={volunteerExperience}
+          title="VOLUNTEER EXPERIENCE"
+          id="volunteer"
+          onRegisterRef={(el) => {
+            if (el) sectionRefs.current['volunteer'] = el;
+          }}
+          isSectionVisible={isSectionVisible}
+        />
 
-      {/* Teaching Experience Timeline */}
-      <TimelineSection
-        items={teachingExperience}
-        title="TEACHING EXPERIENCE"
-        id="teaching"
-        onRegisterRef={(el) => {
-          if (el) sectionRefs.current['teaching'] = el;
-        }}
-        isSectionVisible={isSectionVisible}
-      />
+        {/* Teaching Experience Timeline */}
+        <TimelineSection
+          items={teachingExperience}
+          title="TEACHING EXPERIENCE"
+          id="teaching"
+          onRegisterRef={(el) => {
+            if (el) sectionRefs.current['teaching'] = el;
+          }}
+          isSectionVisible={isSectionVisible}
+        />
+      </Suspense>
 
       {/* Education Timeline */}
       <section
@@ -132,10 +150,11 @@ export default function Home() {
                 <div
                   key={idx}
                   id={`edu-${idx}`}
-                  className="relative transition-all duration-1000 pt-2 md:pt-3"
+                  className="relative transition-all pt-2 md:pt-3"
                   style={{
                     opacity: isSectionVisible('education') ? 1 : 0,
                     transform: isSectionVisible('education') ? 'translateY(0px)' : 'translateY(20px)',
+                    transitionDuration: 'var(--animation-fade-in)',
                     transitionDelay: `${idx * 0.1}s`
                   }}
                 >
@@ -178,43 +197,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section
-        id="projects"
-        ref={(el) => {
-          if (el) sectionRefs.current['projects'] = el;
-        }}
-        className="theme-section"
-      >
-        <ProjectsSection
-          projects={projects}
-          isVisible={isSectionVisible('projects')}
+      {/* Projects Section - lazy loaded */}
+      <Suspense fallback={<SectionLoader />}>
+        <section
+          id="projects"
+          ref={(el) => {
+            if (el) sectionRefs.current['projects'] = el;
+          }}
+          className="theme-section"
+        >
+          <ProjectsSection
+            projects={projects}
+            isVisible={isSectionVisible('projects')}
+          />
+        </section>
+      </Suspense>
+
+      {/* Skills Section - lazy loaded */}
+      <Suspense fallback={<SectionLoader />}>
+        <SkillsSection
+          skills={skills}
+          isVisible={isSectionVisible('skills')}
+          onRegisterRef={(el) => {
+            if (el) sectionRefs.current['skills'] = el;
+          }}
         />
-      </section>
 
-      {/* Skills Section */}
-      <SkillsSection
-        skills={skills}
-        isVisible={isSectionVisible('skills')}
-        onRegisterRef={(el) => {
-          if (el) sectionRefs.current['skills'] = el;
-        }}
-      />
+        {/* Languages Section */}
+        <LanguagesSection
+          languages={languages}
+          isVisible={isSectionVisible('skills')}
+        />
 
-      {/* Languages Section */}
-      <LanguagesSection
-        languages={languages}
-        isVisible={isSectionVisible('skills')}
-      />
+        {/* Certifications Section */}
+        <CertificationsSection
+          certifications={certifications}
+          isVisible={isSectionVisible('skills')}
+        />
+      </Suspense>
 
-      {/* Certifications Section */}
-      <CertificationsSection
-        certifications={certifications}
-        isVisible={isSectionVisible('skills')}
-      />
-
-      {/* Contact Section */}
-      <ContactSection />
+      {/* Contact Section - lazy loaded */}
+      <Suspense fallback={<SectionLoader />}>
+        <ContactSection />
+      </Suspense>
 
       {/* Back to Top Button */}
       <BackToTop />
