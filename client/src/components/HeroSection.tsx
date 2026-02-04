@@ -6,7 +6,7 @@
  * - Professional title
  * - Brief description
  * - Call-to-action buttons (Explore and Download CV)
- * - Animated geometric background elements
+ * - Animated geometric background elements with parallax scrolling
  * - Theme-aware CV download (light/dark versions)
  * - Analytics tracking for CV downloads with theme info
  */
@@ -14,6 +14,7 @@
 import { ChevronDown, Download } from 'lucide-react';
 import { trackCVDownload } from '@/utils/analytics';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useParallax } from '@/hooks/useParallax';
 
 interface HeroSectionProps {
   /** Callback when explore button is clicked */
@@ -30,6 +31,12 @@ interface HeroSectionProps {
  */
 export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
   const { theme } = useTheme();
+
+  // Parallax effects for background elements (different speeds for depth)
+  const { style: squareParallax } = useParallax({ speed: 0.15, maxOffset: 100 });
+  const { style: circleParallax } = useParallax({ speed: 0.25, maxOffset: 150 });
+  const { style: smallCircleParallax } = useParallax({ speed: 0.1, maxOffset: 80 });
+  const { style: diagonalLineParallax } = useParallax({ speed: 0.2, maxOffset: 120 });
   
   // Select CV based on current theme
   const cvUrl = theme === 'dark' 
@@ -41,14 +48,65 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 theme-border-subtle" style={{ borderBottomWidth: '1px' }} aria-label="Introduction">
-      {/* Animated background elements - decorative only */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        {/* Rotating square in top-left */}
-        <div className="absolute top-10 left-10 w-32 md:w-64 h-32 md:h-64 border-2 rotate-45 animate-pulse" style={{ borderColor: 'var(--border-subtle)' }} />
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 theme-border-subtle overflow-hidden" style={{ borderBottomWidth: '1px' }} aria-label="Introduction">
+      {/* Animated background elements with parallax - decorative only */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        {/* Rotating square in top-left - slowest parallax */}
+        <div 
+          className="absolute top-10 left-10 w-32 md:w-64 h-32 md:h-64 border-2 rotate-45 animate-pulse" 
+          style={{ 
+            borderColor: 'var(--border-subtle)',
+            ...squareParallax
+          }} 
+        />
         
-        {/* Pulsing circle in bottom-right */}
-        <div className="absolute bottom-20 right-20 w-48 md:w-96 h-48 md:h-96 border-2 rounded-full animate-pulse" style={{ borderColor: 'var(--border-subtle)', opacity: 0.5 }} />
+        {/* Large pulsing circle in bottom-right - medium parallax */}
+        <div 
+          className="absolute bottom-20 right-20 w-48 md:w-96 h-48 md:h-96 border-2 rounded-full animate-pulse" 
+          style={{ 
+            borderColor: 'var(--border-subtle)', 
+            opacity: 0.5,
+            ...circleParallax
+          }} 
+        />
+
+        {/* Small circle in top-right - slow parallax */}
+        <div 
+          className="absolute top-32 right-32 w-16 md:w-32 h-16 md:h-32 border rounded-full" 
+          style={{ 
+            borderColor: 'var(--border-subtle)', 
+            opacity: 0.3,
+            ...smallCircleParallax
+          }} 
+        />
+
+        {/* Diagonal line in bottom-left - fast parallax */}
+        <div 
+          className="absolute bottom-40 left-20 w-32 md:w-64 h-0.5 rotate-45" 
+          style={{ 
+            backgroundColor: 'var(--border-subtle)', 
+            opacity: 0.4,
+            ...diagonalLineParallax
+          }} 
+        />
+
+        {/* Additional decorative dots */}
+        <div 
+          className="absolute top-1/4 left-1/4 w-2 h-2 rounded-full" 
+          style={{ 
+            backgroundColor: 'var(--primary)', 
+            opacity: 0.3,
+            ...smallCircleParallax
+          }} 
+        />
+        <div 
+          className="absolute bottom-1/3 right-1/4 w-3 h-3 rounded-full" 
+          style={{ 
+            backgroundColor: 'var(--primary)', 
+            opacity: 0.2,
+            ...circleParallax
+          }} 
+        />
       </div>
 
       {/* Content */}
