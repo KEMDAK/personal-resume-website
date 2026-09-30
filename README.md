@@ -219,13 +219,19 @@ Typical build output sizes:
 
 ### Updating Resume Data
 
-Edit `client/src/data/resume.ts` to update:
-- Professional experience
-- Education
-- Skills and languages
-- Volunteer and teaching experience
+> Resume content is **generated** — do not edit `client/src/data/resume.ts` or the
+> meta descriptions in `client/index.html` by hand. Edit
+> [`resume.yaml`](https://github.com/KEMDAK/latex-resume/blob/master/resume.yaml)
+> in the [latex-resume](https://github.com/KEMDAK/latex-resume) repo instead:
+> - Professional experience, education, skills and languages
+> - Volunteer and teaching experience, certifications, publications
+> - Personal info and SEO/social meta descriptions
+>
+> Pushing to `latex-resume` regenerates `resume.ts` + `index.html` and copies them
+> here automatically via CI (the PDF keeps a condensed one-page rendering; the
+> website shows the full detail).
 
-Edit `client/src/data/projects.ts` to update:
+Edit `client/src/data/projects.ts` manually to update:
 - Project descriptions
 - Technologies used
 - Project links (GitHub, demos, etc.)
