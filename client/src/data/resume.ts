@@ -125,7 +125,8 @@ export const professionalExperience: TimelineItem[] = [
   {
     title: 'Back-end Developer',
     company: 'elmenus',
-    companyUrl: 'https://www.elmenus.com/',  startDate: 'Jul 2018',
+    companyUrl: 'https://www.elmenus.com/',
+    startDate: 'Jul 2018',
     endDate: 'Sep 2018',
     description: [
       'Developed backend services for restaurant discovery and ordering platform',
