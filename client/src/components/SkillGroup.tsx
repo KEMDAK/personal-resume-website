@@ -74,6 +74,7 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({
               }}
             >
               {skill.name}
+              <span className="sr-only"> official website</span>
               <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
             </a>
           ) : (
