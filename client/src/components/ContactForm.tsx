@@ -74,11 +74,11 @@ export const ContactForm: React.FC = () => {
       className="max-w-xl mx-auto text-left"
       aria-label="Contact form"
     >
-      {/* Web3Forms access key */}
+      {/* Web3Forms access key (VITE_WEB3FORMS_KEY env var, see .env.example) */}
       <input
         type="hidden"
         name="access_key"
-        value="17db9f9c-d304-472a-8af4-fd417209101e"
+        value={import.meta.env.VITE_WEB3FORMS_KEY}
       />
       
       {/* Custom subject line */}

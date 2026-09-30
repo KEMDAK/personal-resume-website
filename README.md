@@ -53,10 +53,9 @@ kareem-resume/
 │   │   ├── main.tsx                 # React entry point
 │   │   └── index.css                # Global styles and design tokens
 │   ├── index.html                   # HTML template
-│   └── vite.config.ts               # Vite configuration
+├── vite.config.ts                   # Vite configuration
 ├── package.json                     # Dependencies and scripts
 ├── tsconfig.json                    # TypeScript configuration
-├── tailwind.config.ts               # Tailwind CSS configuration
 └── README.md                        # This file
 ```
 
@@ -121,84 +120,38 @@ This starts a local server to preview the production build before deployment.
 
 ## Deployment
 
-### Manus Hosting (Recommended)
+Pushes to `main` deploy automatically to GitHub Pages via
+`.github/workflows/static.yml`: `pnpm install` → `pnpm build` → `dist/public/`
+published to https://kareem-mokhtar.com. The custom domain is set by
+`client/public/CNAME`.
 
-The project is configured for deployment on Manus with built-in hosting support:
+## Environment Variables
 
-1. **Create a checkpoint** — Save your changes via the Management UI
-2. **Click Publish** — Use the Publish button in the Management UI header
-3. **Configure domain** — Set up custom domain or use the auto-generated `*.manus.space` domain
-4. **Deploy** — Your site will be live immediately with automatic SSL/TLS
+The contact form needs its Web3Forms access key at build time:
 
-### Static Hosting (Netlify, Vercel, GitHub Pages, etc.)
-
-Since this is a static site, it can be deployed to any static hosting provider:
-
-1. **Build the project**
-   ```bash
-   pnpm build
-   ```
-
-2. **Deploy the `dist/` directory** to your hosting provider:
-
-#### Netlify
-```bash
-# Install Netlify CLI
-npm install -g netlify-cli
-
-# Deploy
-netlify deploy --prod --dir=dist
-```
-
-#### Vercel
-```bash
-# Install Vercel CLI
-npm install -g vercel
-
-# Deploy
-vercel --prod
-```
-
-#### GitHub Pages
-```bash
-# Build
-pnpm build
-
-# Deploy dist/ folder to gh-pages branch
-# Then enable GitHub Pages in repository settings
-```
-
-#### Traditional Web Hosting (cPanel, Bluehost, etc.)
-1. Build the project: `pnpm build`
-2. Upload the contents of the `dist/` folder to your web server's public directory (usually `public_html/`)
-3. Ensure your server is configured to serve `index.html` for all routes (for client-side routing)
-
-### Environment Variables
-
-The project uses environment variables injected by Manus:
-
-- `VITE_APP_ID` — Application identifier
-- `VITE_APP_TITLE` — Application title
-- `VITE_ANALYTICS_ENDPOINT` — Analytics endpoint
-- `VITE_ANALYTICS_WEBSITE_ID` — Analytics website ID
-
-These are automatically available in the build and do not require manual configuration.
+| Variable | Local | CI |
+|---|---|---|
+| `VITE_WEB3FORMS_KEY` | `.env` (see `.env.example`) | `VITE_WEB3FORMS_KEY` repo secret (wired in `static.yml`) |
 
 ## Build Output
 
-After running `pnpm build`, the `dist/` directory contains:
+After running `pnpm build`, `dist/public/` contains the published site:
 
 ```
-dist/
+dist/public/
 ├── index.html              # Main HTML file
 ├── assets/
 │   ├── index-[hash].js     # Bundled JavaScript
 │   ├── index-[hash].css    # Bundled CSS
 │   └── [other-assets]      # Images and other static files
-└── robots.txt              # SEO robots file
+├── CNAME                   # Custom domain (kareem-mokhtar.com)
+├── sitemap.xml             # SEO sitemap
+├── robots.txt              # SEO robots file
+├── favicon*.png / *.ico    # Favicons
+└── resume_dark.pdf / resume_light.pdf  # Pushed by the latex-resume CI
 ```
 
-All files are minified and optimized for production. The `[hash]` in filenames ensures cache busting for updated assets.
+All files are minified and optimized for production. The `[hash]` in filenames ensures cache busting for updated assets. `emptyOutDir` wipes `dist/public` before each build.
 
 ## Performance Optimization
 
@@ -300,9 +253,9 @@ All components are in `client/src/components/`:
 | Script | Description |
 |--------|-------------|
 | `pnpm dev` | Start development server with HMR |
-| `pnpm build` | Build for production |
+| `pnpm build` | Build for production (static only) |
 | `pnpm preview` | Preview production build locally |
-| `pnpm type-check` | Run TypeScript type checking |
+| `pnpm check` | Run TypeScript type checking |
 
 ## Browser Support
 
@@ -324,4 +277,4 @@ For inquiries, visit the contact section on the website or reach out via:
 
 ---
 
-**Last Updated** — January 2026
+**Last Updated** — September 2026
