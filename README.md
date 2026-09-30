@@ -45,8 +45,8 @@ kareem-resume/
 │   │   ├── pages/
 │   │   │   └── Home.tsx             # Main page component
 │   │   ├── data/
-│   │   │   ├── resume.ts            # Resume data (experience, education, skills)
-│   │   │   └── projects.ts          # Projects data with links
+│   │   │   ├── resume.ts            # Resume data - GENERATED from latex-resume/resume.yaml
+│   │   │   └── projects.ts          # Projects data - GENERATED from latex-resume/resume.yaml
 │   │   ├── utils/
 │   │   │   └── scrollUtils.ts       # Scroll visibility utilities
 │   │   ├── App.tsx                  # Root app component
@@ -219,22 +219,19 @@ Typical build output sizes:
 
 ### Updating Resume Data
 
-> Resume content is **generated** — do not edit `client/src/data/resume.ts` or the
-> meta descriptions in `client/index.html` by hand. Edit
+> Resume content is **generated** — do not edit `client/src/data/resume.ts`,
+> `client/src/data/projects.ts`, or the meta descriptions in `client/index.html`
+> by hand. Edit
 > [`resume.yaml`](https://github.com/KEMDAK/latex-resume/blob/master/resume.yaml)
 > in the [latex-resume](https://github.com/KEMDAK/latex-resume) repo instead:
 > - Professional experience, education, skills and languages
 > - Volunteer and teaching experience, certifications, publications
+> - Project portfolio (13 projects)
 > - Personal info and SEO/social meta descriptions
 >
-> Pushing to `latex-resume` regenerates `resume.ts` + `index.html` and copies them
-> here automatically via CI (the PDF keeps a condensed one-page rendering; the
-> website shows the full detail).
-
-Edit `client/src/data/projects.ts` manually to update:
-- Project descriptions
-- Technologies used
-- Project links (GitHub, demos, etc.)
+> Pushing to `latex-resume` regenerates `resume.ts`, `projects.ts` + `index.html`
+> and copies them here automatically via CI (the PDF keeps a condensed one-page
+> rendering; the website shows the full detail).
 
 ### Styling
 
