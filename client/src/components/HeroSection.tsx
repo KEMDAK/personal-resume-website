@@ -54,8 +54,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExplore }) => {
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
         {/* Terminal prompt indicator - decorative */}
-        <div className="mb-8 animate-pulse" aria-hidden="true">
-          <span className="theme-text-subtle">&gt; _</span>
+        <div className="mb-8" aria-hidden="true">
+          <span className="theme-text-subtle">&gt;<span className="terminal-cursor" /></span>
         </div>
 
         {/* Main name - large and glowing */}
